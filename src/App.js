@@ -5,9 +5,18 @@ import LoginPage from "./pages/LoginPage";
 import ProductDetail from "./pages/ProductDetail";
 import Products from "./pages/Products";
 import ProfilePage from "./pages/ProfilePage";
+import RootPage from "./pages/RootPage";
+import SignUpPage from "./pages/SignUpPage";
 
 const router = createBrowserRouter([
-  {path: '/login', element: <LoginPage />},
+  {
+    path:'/',
+    element: <RootPage />,
+    children: [
+      {path: '/login', element: <LoginPage />},
+      {path: '/signup', element: <SignUpPage />},
+    ]
+  },
   {path: '/&/product', element: <Products />},
   {path: '/product/:id', element: <ProductDetail />},
   {path: '/user-profile', element: <ProfilePage />},
@@ -18,7 +27,6 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div>
-      <h1>E-commerce Site</h1>
       <RouterProvider router={router} />
     </div>
   );
