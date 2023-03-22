@@ -1,9 +1,18 @@
 import React from 'react'
+import SignUpForm from '../components/SignUpForm'
 
 const SignUpPage = () => {
   return (
     <div>
-      <h1>Signup Page</h1>
+      <h1 
+        style={{
+            textAlign:'center',
+            color:'brown'
+        }}
+      >
+        Signup
+      </h1>
+      <SignUpForm />
     </div>
   )
 }
