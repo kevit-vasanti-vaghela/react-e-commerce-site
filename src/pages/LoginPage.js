@@ -1,10 +1,19 @@
 import React from 'react'
+import LoginForm from '../components/LoginForm'
 
 const LoginPage = () => {
   return (
-    <div>
-      <h1>Login Page</h1>
-    </div>
+    <>
+      <h1 
+        style={{
+            textAlign:'center',
+            color:'brown'
+        }}
+      >
+        Login
+      </h1>
+      <LoginForm />
+    </>
   )
 }
 
