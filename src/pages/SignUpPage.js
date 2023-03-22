@@ -1,5 +1,6 @@
 import React from 'react'
 import SignUpForm from '../components/SignUpForm'
+import { redirect } from 'react-router-dom'
 
 const SignUpPage = () => {
   return (
@@ -18,3 +19,29 @@ const SignUpPage = () => {
 }
 
 export default SignUpPage
+
+export async function action({ request }) {
+  const data = await request.formData();
+  console.log("DATA",data)
+  const userData = {
+      firstname: data.get('firstname'),
+      lastname: data.get('lastname'),
+      email: data.get('email'),
+      mobile: data.get('mobile'),
+      password: data.get('password'),
+    };
+  console.log('USERDATA',userData);
+
+    const response = await fetch('https://641adba89b82ded29d438067.mockapi.io/users' , {
+      method: 'POST',
+      headers: {
+        'content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData)
+    })
+    console.log('RESPONSE',response);
+    localStorage.setItem('user',JSON.stringify(userData))
+    localStorage.setItem('auth', true);
+    return redirect('/&/products')
+}
+

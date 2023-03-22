@@ -8,6 +8,7 @@ import ProfilePage from "./pages/ProfilePage";
 import RootPage from "./pages/RootPage";
 import SignUpPage from "./pages/SignUpPage";
 import HomePage from "./pages/HomePage";
+import { action as signUpAction } from "./pages/SignUpPage";
 
 const router = createBrowserRouter([
   {
@@ -15,8 +16,8 @@ const router = createBrowserRouter([
     element: <RootPage />,
     children: [
       {index: true, element: <HomePage />},
-      {path: '/login', element: <LoginPage />},
-      {path: '/signup', element: <SignUpPage />},
+      {path: 'login', element: <LoginPage />},
+      {path: 'signup', element: <SignUpPage />, action: signUpAction},
     ]
   },
   {path: '/&/products', element: <Products />},

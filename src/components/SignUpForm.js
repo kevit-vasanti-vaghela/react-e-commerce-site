@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './SignUpForm.module.css'
-import { Form, Link } from 'react-router-dom'
+import { Form } from 'react-router-dom'
 
 
 const SignUpForm = () => {
@@ -21,14 +21,14 @@ const SignUpForm = () => {
         </p>
         <p>
           <label htmlFor="number">Mobile Number</label>
-          <input id="number" type="number" name="number" required />
+          <input id="number" type="number" name="mobile" required />
         </p>
         <p>
-          <label htmlFor="image">Password</label>
+          <label htmlFor="password">Password</label>
           <input id="password" type="password" name="password" required />
         </p>
         <div className={classes.actions}>
-          <Link to='/&/products'>Save</Link>
+          <button>Save</button>
         </div>
       </Form>
     </div>
@@ -36,3 +36,4 @@ const SignUpForm = () => {
 }
 
 export default SignUpForm
+

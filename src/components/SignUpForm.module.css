@@ -51,7 +51,7 @@
     border: none;
   }
   
-  .actions a {
+  .actions button {
     text-decoration: none;
     background-color:rgb(201, 64, 64);
     font: inherit;
@@ -63,12 +63,10 @@
   }
 
   .actions button:hover {
-    background-color: var(--color-primary-300);
+    transform: scale(0.98);
   }
   
   .actions a:hover {
     transform: scale(0.98);
   } 
-  .heading {
-    font: inherit;
-  }
+  
