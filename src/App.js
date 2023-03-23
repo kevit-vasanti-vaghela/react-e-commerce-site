@@ -12,6 +12,7 @@ import { action as signUpAction } from "./pages/SignUpPage";
 import { loader as loginLoader} from "./components/LoginForm";
 import ProductRootPage from "./pages/ProductRootPage";
 import { loader as productLoader} from "./components/ProductList";
+import { loadEachProduct } from "./pages/ProductDetail";
 
 const router = createBrowserRouter([
   {
@@ -28,9 +29,10 @@ const router = createBrowserRouter([
     element: <ProductRootPage />,
     children: [
       {index: true, element: <Products />, loader: productLoader },
+      {path: ':id', element: <ProductDetail />, loader: loadEachProduct},
     ]
   },
-  {path: '/product/:id', element: <ProductDetail />},
+  
   {path: '/user-profile', element: <ProfilePage />},
   {path: '/cart', element: <CartPage />},
   {path: '/checkout', element: <CheckoutPage />},

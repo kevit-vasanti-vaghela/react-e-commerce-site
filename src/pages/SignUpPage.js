@@ -1,7 +1,6 @@
 import React from 'react'
 import SignUpForm from '../components/SignUpForm'
 import { redirect } from 'react-router-dom'
-import { getAuthToken } from '../util/auth'
 
 const SignUpPage = () => {
   return (
@@ -42,13 +41,13 @@ export async function action({ request }) {
     })
     console.log('RESPONSE',response);
     localStorage.setItem('user',JSON.stringify(userData))
-    localStorage.setItem('auth', true);
+    // localStorage.setItem('auth', true);
 
-    let auth = getAuthToken();
-    if(auth) {
-      return redirect('/&/products')
-    }
+    // let auth = getAuthToken();
+    // if(auth) {
+    //   return redirect('/&/products')
+    // }
 
-    return redirect('/signup')
+    return redirect('/login')
 }
 
