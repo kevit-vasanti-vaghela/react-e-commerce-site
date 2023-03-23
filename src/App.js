@@ -9,6 +9,7 @@ import RootPage from "./pages/RootPage";
 import SignUpPage from "./pages/SignUpPage";
 import HomePage from "./pages/HomePage";
 import { action as signUpAction } from "./pages/SignUpPage";
+import { loader as loginLoader} from "./components/LoginForm";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
     element: <RootPage />,
     children: [
       {index: true, element: <HomePage />},
-      {path: 'login', element: <LoginPage />},
+      {path: 'login', element: <LoginPage />, loader: loginLoader},
       {path: 'signup', element: <SignUpPage />, action: signUpAction},
     ]
   },
