@@ -5,14 +5,21 @@ const Products = () => {
   
   return (
     <>
-      <h1 
+      {/* <h1 
         style={{
             textAlign:'center',
             color:'brown',
         }}
       >
         Products
-      </h1>
+      </h1> */}
+      <div style={{
+            textAlign:'center',
+            color:'brown',
+            marginTop:'20px'
+        }}>
+        <input type="search" />
+      </div>
       <ProductList />
     </>
   )

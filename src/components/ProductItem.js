@@ -7,7 +7,8 @@ const ProductItem = ({ product }) => {
     <li className={classes.item}>
         <Link to={`/&/products/${product.id}`}>
             <img src={product.avatar} alt={product.item}/>
-            <h2>{product.price}</h2>
+            <h2>{product.item}</h2>
+            <p>{product.price}$</p>
         </Link>
         <button>ADD</button>
     </li>
