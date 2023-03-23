@@ -11,6 +11,7 @@ import HomePage from "./pages/HomePage";
 import { action as signUpAction } from "./pages/SignUpPage";
 import { loader as loginLoader} from "./components/LoginForm";
 import ProductRootPage from "./pages/ProductRootPage";
+import { loader as productLoader} from "./components/ProductList";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
     path:'/&/products', 
     element: <ProductRootPage />,
     children: [
-      {index: true, element: <Products />},
+      {index: true, element: <Products />, loader: productLoader },
     ]
   },
   {path: '/product/:id', element: <ProductDetail />},
