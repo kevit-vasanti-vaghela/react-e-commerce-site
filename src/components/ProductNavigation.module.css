@@ -1,0 +1,32 @@
+.nav-div {
+    background-color: bisque;
+}
+
+.header {
+    max-width: 70rem;
+    margin: auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .list {
+    display: flex;
+    gap: 2rem;
+    color:brown;
+  }
+  
+  .list a {
+    text-decoration: none;
+    color:brown;
+    font-weight: 500;
+  }
+  
+  .list a:hover,
+  .list a.active {
+    color: var(--color-primary-800);
+  }
+
+   li {
+    list-style-type: none;
+   }
