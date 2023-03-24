@@ -13,13 +13,6 @@ const Products = () => {
       >
         Products
       </h1> */}
-      <div style={{
-            textAlign:'center',
-            color:'brown',
-            marginTop:'20px'
-        }}>
-        <input type="search" />
-      </div>
       <ProductList />
     </>
   )

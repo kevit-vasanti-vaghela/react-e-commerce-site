@@ -1,16 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useLoaderData } from 'react-router-dom'
 import ProductItem from './ProductItem'
 import classes from './ProductList.module.css'
 
 const ProductList = () => {
+    const [searchTerm, setSearchTerm] = useState('')
     const productData = useLoaderData();
+    
     console.log(productData)
+
+    
+    const getFilteredProducts = (searchTerm,productData) => {
+        return productData.filter((product) => 
+         product.item.toLowerCase().includes(searchTerm.toLowerCase()))
+    }   
+
+    const onChangeHandler = (e) => {
+        setSearchTerm(e.target.value)
+    }
+
+    const filteredProducts = getFilteredProducts(searchTerm,productData)
   return (
     <div className={classes.products}>
+        <input type="search" onChange={onChangeHandler} value={searchTerm} placeholder='Search Products' />
         <ul className={classes.list}>
-            {productData.map((product) => (
-                <ProductItem product={product}/>
+            {filteredProducts.map((product) => (
+                <ProductItem key={product.id} product={product}/>
             ))}
         </ul>
   
