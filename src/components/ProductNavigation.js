@@ -25,7 +25,7 @@ const ProductNavigation = () => {
         <ul className={classes.list}>
           <li>
             <NavLink
-              to="/login"
+              to="cart"
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
