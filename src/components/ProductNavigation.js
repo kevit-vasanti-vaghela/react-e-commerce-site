@@ -8,6 +8,10 @@ const ProductNavigation = () => {
   const moveToCartHandler = () => {
     navigate('cart')
   }
+  const checkoutHandler = () => {
+    localStorage.clear();
+    navigate('/')
+  }
   return (
     <div className={classes['nav-div']}>
         <header className={classes.header}>
@@ -35,14 +39,9 @@ const ProductNavigation = () => {
             </button>
           </li>
           <li>
-            <NavLink
-              to="/signup"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-            >
+            <button onClick={checkoutHandler} style={{backgroundColor:'transparent', color:'brown', marginTop:'-10px'}}>
               Checkout
-            </NavLink>
+            </button>
           </li>
         </ul>
       </nav>

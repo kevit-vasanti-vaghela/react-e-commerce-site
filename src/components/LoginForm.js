@@ -16,6 +16,7 @@ const LoginForm = () => {
     console.log(authData)
     if(authData) {
       localStorage.setItem('auth', true);
+      localStorage.setItem('user',JSON.stringify(authData));
       return navigate('/&/products')
     }
     return navigate('/')
