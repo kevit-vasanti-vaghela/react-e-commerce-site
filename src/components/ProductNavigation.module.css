@@ -30,3 +30,25 @@
    li {
     list-style-type: none;
    }
+
+   .badge {
+    background-color:rgb(230, 168, 94);
+    border-radius: 30px;
+    padding: 0.15rem 1.25rem;
+    color: brown;
+  }
+
+  .cart-button {
+    background-color: transparent;
+    color: brown;
+    margin-top: -10px;
+  }
+  
+  .cart-button:hover,
+  .cart-button:active {
+    font-weight: 500;
+  }
+  
+  .cart-button span {
+    margin: 0 0.1rem;
+  }
