@@ -15,13 +15,13 @@ const ProductNavigation = () => {
         <ul className={classes.list}>
             <li>
                 <NavLink
-                to="/"
+                to="/&/products"
                 className={({ isActive }) =>
                     isActive ? classes.active : undefined
                 }
                 end
                 >
-                Home
+                Products
                 </NavLink>
             </li>
         </ul>
