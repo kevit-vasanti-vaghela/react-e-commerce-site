@@ -1,6 +1,8 @@
 .products {
     margin: 2rem auto;
     max-width: 40rem;
+    display: flex;
+    flex-direction: column;
   }
   
   .list {
@@ -9,5 +11,16 @@
     gap: 1rem;
     background-color: transparent;
   }
-  
+  .searchbar {
+    height: 2rem;
+    width:500px;
+    text-indent: 5px;
+    font-size: 18px;
+    border-radius: 10px;
+    margin: 3rem 5rem;
+    border: 2px solid brown;
+  }
+  .searchbar:focus {
+    outline: none;
+  }
   
