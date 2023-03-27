@@ -2,7 +2,9 @@ import React from 'react'
 import classes from './ProductNavigation.module.css'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { getSignedInUser } from '../util/auth'
 const ProductNavigation = () => {
+  const signedInUser = getSignedInUser()
   const navigate = useNavigate();
   const cartQuantity = useSelector(state=> state.cart.totalQuantity);
   const moveToCartHandler = () => {
@@ -43,6 +45,18 @@ const ProductNavigation = () => {
               Checkout
             </button>
           </li>
+          <li style={{border: '0.5px solid brown', borderRadius:'20px', padding:'0.5rem 1.5rem'}}>
+                <NavLink
+                to="/products/user-profile"
+                className={({ isActive }) =>
+                    isActive ? classes.active : undefined
+                }
+                end
+                >
+                {signedInUser ? signedInUser.firstname : ''}
+                <i class="fa-solid fa-user" style={{ marginLeft:'20px'}}></i>
+                </NavLink>
+            </li>
         </ul>
       </nav>
     </header>

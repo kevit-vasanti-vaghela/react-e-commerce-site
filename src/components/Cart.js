@@ -19,7 +19,7 @@ const Cart = () => {
     const showButtons = Amount > 0 ? true : false;
     console.log(cartItems)
     const orderHandler = () => {
-        navigate('/&/products/user-profile')
+        navigate('/products/user-profile')
     }
   return (
     <Card className={classes.cart}>

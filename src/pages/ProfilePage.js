@@ -67,6 +67,6 @@ export async function changeUserDataAction({ request }) {
     })
   const responseData = await response.json();
   console.log('CHANGE-USER',responseData)
-  localStorage.clear();
+  localStorage.clear()
   return redirect('/checkout')
 }

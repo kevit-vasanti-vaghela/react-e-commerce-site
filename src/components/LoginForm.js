@@ -21,7 +21,7 @@ const LoginForm = () => {
     if(authData) {
       localStorage.setItem('auth', true);
       localStorage.setItem('user',JSON.stringify(authData));
-      return navigate('/&/products')
+      return navigate('/products')
     }
     return navigate('/')
   }
@@ -58,7 +58,7 @@ export async function loader({ request }) {
   
   console.log('Response Data', responseData)
   const newData = responseData.map((data) => {
-    return {id: data.id, email: data.email,password: data.password}
+    return {id: data.id, email: data.email,password: data.password, firstname:data.firstname}
   })
   console.log('NEW DATA', newData)
   return newData

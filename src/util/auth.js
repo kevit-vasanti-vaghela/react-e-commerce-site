@@ -18,3 +18,14 @@ export function checkAuthLoader() {
     }
 }
 
+export function getSignedInUser() {
+    const signedInUser = JSON.parse(localStorage.getItem('user'));
+    return  signedInUser;
+}
+
+export function checkOrderStatus() {
+    const orderStatus = JSON.parse(localStorage.getItem('ordered'));
+    return  orderStatus;
+}
+
+
