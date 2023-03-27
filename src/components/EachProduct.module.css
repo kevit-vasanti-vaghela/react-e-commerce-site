@@ -3,6 +3,11 @@
     margin: 2rem auto;
     text-align: center;
   }
+
+  .image-div{
+    width: 50rem;
+    height: 30rem;
+  }
   
   .product img {
     width: 30rem;

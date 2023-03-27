@@ -3,13 +3,21 @@ import classes from './EachProduct.module.css'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { cartActions } from '../store/cart-slice'
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 const EachProduct = ({ product }) => {
   console.log('PRODUCT',product)
   const dispatch = useDispatch();
   return (
     <article className={classes.product}>
-      <img src={product[0].avatar} alt={product[0].item} />
+      <Carousel>
+        {product[0].images.map((image) => (
+          <div className={classes['image-div']}>
+            <img src={image} alt={product[0].item} />
+          </div>
+        ))}
+      </Carousel>
       <h1>{product[0].item}</h1>
       <h2>{product[0].price.toFixed(2)}</h2>
       <p>{product[0].description}</p>
