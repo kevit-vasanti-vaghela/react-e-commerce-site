@@ -29,6 +29,11 @@ export async function action({ request }) {
       email: data.get('email'),
       mobile: data.get('mobile'),
       password: data.get('password'),
+      address:{
+        city: data.get('city'),
+        state: data.get('state'),
+        country: data.get('country'),
+      }
     };
   console.log('USERDATA',userData);
 

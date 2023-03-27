@@ -1,15 +1,19 @@
 import React, { useRef } from 'react'
 import classes from './LoginForm.module.css'
 import {useLoaderData, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { cartActions } from '../store/cart-slice'
 
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const enteredEmail = useRef();
   const enteredPassword = useRef();
   const loaderData = useLoaderData();
   let navigate = useNavigate();
   const checkLogin = (e) =>{
     e.preventDefault();
+    dispatch(cartActions.clearCart())
     const authData = loaderData.find(data => {
       return (data.email === enteredEmail.current.value && data.password === enteredPassword.current.value)
     })
@@ -54,7 +58,7 @@ export async function loader({ request }) {
   
   console.log('Response Data', responseData)
   const newData = responseData.map((data) => {
-    return {email: data.email,password: data.password}
+    return {id: data.id, email: data.email,password: data.password}
   })
   console.log('NEW DATA', newData)
   return newData
