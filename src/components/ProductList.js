@@ -68,7 +68,7 @@ const ProductList = () => {
 
 export default ProductList
 
-export async function loader() {
+export async function productsLoader() {
     const url = new URL('https://641adba89b82ded29d438067.mockapi.io/products');
     // url.searchParams.append('page', 1);
     // url.searchParams.append('limit', 10);

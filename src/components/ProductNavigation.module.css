@@ -1,9 +1,11 @@
 .nav-div {
     background-color: bisque;
+    box-shadow:0px 2px 10px rgb(207, 173, 131);
 }
 
 .header {
     max-width: 70rem;
+    height: 4rem;
     margin: auto;
     padding: 2rem;
     display: flex;
@@ -14,12 +16,14 @@
     display: flex;
     gap: 2rem;
     color:brown;
+    font-size: 17px;
   }
   
   .list a {
     text-decoration: none;
     color:brown;
     font-weight: 500;
+    
   }
   
   .list a:hover,
