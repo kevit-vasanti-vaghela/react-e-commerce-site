@@ -1,11 +1,13 @@
 import React from 'react'
 import classes from './Cart.module.css'
 import Card from '../UI/Card'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import CartItem from './CartItem'
 import { useNavigate } from 'react-router-dom'
+import { cartActions } from '../store/cart-slice'
 
 const Cart = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const cartItems = useSelector(state=> state.cart.items)
     const Amount = cartItems.map((item) => {
@@ -39,7 +41,7 @@ const Cart = () => {
       </ul>
       <h2 style={{marginLeft:'400px'}}>Total Amount : ${Amount.toFixed(2)}</h2>
       {showButtons && <div className={classes.actions} >
-            <button  >Cancel</button>
+            <button onClick={() =>dispatch(cartActions.clearCart())} >Cancel</button>
             <button style={{marginLeft: '435px'}} onClick={orderHandler}>Order</button>
       </div>}
     </Card>
