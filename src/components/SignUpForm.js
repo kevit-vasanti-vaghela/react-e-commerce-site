@@ -7,7 +7,7 @@ const SignUpForm = ({ data }) => {
   // const saveFormDataHandler = () => {
 
   // }
-  console.log('SINGLE',data[0].firstname)
+  // console.log('SINGLE',data[0].firstname)
   return (
     <div className={classes['signup-div']}>
       <Form method={data ? 'post' : 'post'} className={classes.form}>

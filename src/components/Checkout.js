@@ -1,8 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import CartItem from './CartItem'
 import Card from '../UI/Card'
-import Cart from './Cart'
 import classes from './Checkout.module.css'
 
 
