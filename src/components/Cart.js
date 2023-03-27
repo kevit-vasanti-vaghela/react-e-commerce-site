@@ -40,7 +40,7 @@ const Cart = () => {
       <h2 style={{marginLeft:'400px'}}>Total Amount : ${Amount.toFixed(2)}</h2>
       {showButtons && <div className={classes.actions} >
             <button  >Cancel</button>
-            <button style={{marginLeft: '450px'}} onClick={orderHandler}>Order</button>
+            <button style={{marginLeft: '435px'}} onClick={orderHandler}>Order</button>
       </div>}
     </Card>
   )
