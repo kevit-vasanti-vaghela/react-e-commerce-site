@@ -48,7 +48,7 @@ const LoginForm = () => {
 
 export default LoginForm
 
-export async function loginLoader({ request }) {
+export async function loginLoader() {
  
   const response = await fetch('https://641adba89b82ded29d438067.mockapi.io/users' ,{
     method: 'GET',

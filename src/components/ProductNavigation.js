@@ -54,7 +54,7 @@ const ProductNavigation = () => {
                 end
                 >
                 {signedInUser ? signedInUser.firstname : ''}
-                <i class="fa-solid fa-user" style={{ marginLeft:'20px'}}></i>
+                <i className="fa-solid fa-user" style={{ marginLeft:'20px'}}></i>
                 </NavLink>
             </li>
         </ul>

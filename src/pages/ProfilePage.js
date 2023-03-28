@@ -4,17 +4,27 @@ import SignUpForm from '../components/SignUpForm'
 import { redirect } from 'react-router-dom'
 
 const ProfilePage = () => {
+  const ordered = localStorage.getItem('ordered');
   const data = useLoaderData();
+  const customerDetails = <h1 
+                            style={{
+                                textAlign:'center',
+                                color:'brown'
+                            }}
+                          >
+                            Customer Details
+                          </h1> 
+const customerProfile = <h1 
+                          style={{
+                              textAlign:'center',
+                              color:'brown'
+                          }}
+                        >
+                          Customer Profile
+                        </h1> 
   return (
     <div>
-      <h1 
-        style={{
-            textAlign:'center',
-            color:'brown'
-        }}
-      >
-        Customer Details
-      </h1>
+      { ordered ? customerDetails : customerProfile }
       <SignUpForm data={data} request='post'/>
     </div>
   )
@@ -67,6 +77,12 @@ export async function changeUserDataAction({ request }) {
     })
   const responseData = await response.json();
   console.log('CHANGE-USER',responseData)
-  localStorage.clear()
-  return redirect('/checkout')
+  
+  if(localStorage.getItem('ordered')){
+    localStorage.clear()
+    return redirect('/checkout')
+  }
+ 
+  return redirect('/products')
+  // return responseData
 }

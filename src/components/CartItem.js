@@ -2,13 +2,10 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import classes from './CartItem.module.css'
 import { cartActions } from '../store/cart-slice';
-import { checkOrderStatus } from '../util/auth';
 
 const CartItem = (props) => {
     const dispatch = useDispatch();
     const { item, quantity, total, price, id } = props.item;
-    const orderStatus = checkOrderStatus();
-    console.log('ORDER',orderStatus)
 
     const addItemHandler = () => {
         dispatch(cartActions.addItemToCart({
@@ -35,10 +32,10 @@ const CartItem = (props) => {
         <div className={classes.quantity}>
           x <span>{quantity}</span>
         </div>
-        {!orderStatus && <div className={classes.actions}>
+        <div className={classes.actions}>
           <button onClick={removeItemHandler} >-</button>
           <button onClick={addItemHandler} >+</button>
-        </div>}
+        </div>
       </div>
     </li>
   )

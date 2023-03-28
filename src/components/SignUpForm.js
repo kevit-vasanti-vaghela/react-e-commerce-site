@@ -4,6 +4,8 @@ import { Form } from 'react-router-dom'
 
 
 const SignUpForm = ({ data }) => {
+  const ordered = localStorage.getItem('ordered');
+  console.log('ORDERED',ordered)
   // const saveFormDataHandler = () => {
 
   // }
@@ -44,7 +46,11 @@ const SignUpForm = ({ data }) => {
           <input id="country" type="text" name="country" defaultValue={data ? data[0].address.country : ''} required />
         </p>
         <div className={classes.actions}>
-          <button>{data ? 'PROCEED' : 'SAVE'}</button>
+          <button>{
+          data && !ordered ? 
+          'CHANGE' : 
+          ((data && ordered) ? 
+          'PROCEED' : 'SAVE')}</button>
         </div>
       </Form>
     </div>

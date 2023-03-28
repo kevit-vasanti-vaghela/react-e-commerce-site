@@ -13,7 +13,7 @@ const EachProduct = ({ product }) => {
     <article className={classes.product}>
       <Carousel>
         {product[0].images.map((image) => (
-          <div className={classes['image-div']}>
+          <div key={image} className={classes['image-div']}>
             <img src={image} alt={product[0].item} />
           </div>
         ))}
