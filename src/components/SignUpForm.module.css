@@ -1,7 +1,7 @@
 .signup-div {
     width:50rem;
     margin: 2rem auto;
-    background-color: bisque;
+    background-color: rgb(230, 168, 94);
     border-radius: 10px;
     box-shadow: 5px 5px 60px 10px rgba(.1,.1, .1, .1)
 }

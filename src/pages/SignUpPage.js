@@ -20,7 +20,7 @@ const SignUpPage = () => {
 
 export default SignUpPage
 
-export async function action({ request }) {
+export async function signUpAction({ request }) {
   const data = await request.formData();
   console.log("DATA",data)
   const userData = {

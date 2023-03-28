@@ -1,6 +1,7 @@
 .nav-div {
-    background-color: bisque;
+    background-color: rgb(230, 168, 94);
     box-shadow:0px 2px 10px rgb(207, 173, 131);
+    margin-bottom: 80px;
 }
 
 .header {

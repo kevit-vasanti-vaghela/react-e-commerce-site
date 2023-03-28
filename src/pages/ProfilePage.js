@@ -32,6 +32,7 @@ const customerProfile = <h1
 
 export default ProfilePage
 
+//Loader function
 export async function singleUserLoader() {
   
   const loggedInUser = JSON.parse(localStorage.getItem('user'));
@@ -47,6 +48,8 @@ export async function singleUserLoader() {
   return responseData;
 }
 
+
+//Action function
 export async function changeUserDataAction({ request }) {
 
   const data = await request.formData();
@@ -82,7 +85,6 @@ export async function changeUserDataAction({ request }) {
     localStorage.clear()
     return redirect('/checkout')
   }
- 
   return redirect('/products')
   // return responseData
 }

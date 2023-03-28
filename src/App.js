@@ -5,17 +5,20 @@ import CheckoutPage from "./pages/CheckoutPage";
 // import LoginPage from "./pages/LoginPage";
 import ProductDetail from "./pages/ProductDetail";
 // import Products from "./pages/Products";
-import ProfilePage, { changeUserDataAction, singleUserLoader } from "./pages/ProfilePage";
+// import ProfilePage, { changeUserDataAction, singleUserLoader } from "./pages/ProfilePage";
 import RootPage from "./pages/RootPage";
-import SignUpPage, { action as signUpAction } from "./pages/SignUpPage";
+// import SignUpPage, { action as signUpAction } from "./pages/SignUpPage";
 import HomePage from "./pages/HomePage";
 // import { loader as loginLoader} from "./components/LoginForm";
 import ProductRootPage from "./pages/ProductRootPage";
 // import { loader as productLoader} from "./components/ProductList";
 import { loadEachProduct } from "./pages/ProductDetail";
+import { changeUserDataAction } from "./pages/ProfilePage";
 
 const LoginPage = lazy(() => import('./pages/LoginPage'))
 const Products = lazy(() => import('./pages/Products'))
+const SignUpPage = lazy(() => import('./pages/SignUpPage'))
+const ProfilePage = lazy(() => import('./pages/ProfilePage'))
 
 const router = createBrowserRouter([
   {
@@ -32,7 +35,15 @@ const router = createBrowserRouter([
         ), 
         loader: () => import('./components/LoginForm').then(module => module.loginLoader())
       },
-      {path: 'signup', element: <SignUpPage />, action: signUpAction},
+      {
+        path: 'signup', 
+        element: 
+          <Suspense fallback={<p>Loading...</p>}>
+            <SignUpPage />
+          </Suspense>
+        , 
+        action: () => import('./pages/SignUpPage').then(module => module.signUpAction())
+      },
       {path: 'checkout', element: <CheckoutPage />},
     ]
   },
@@ -50,7 +61,15 @@ const router = createBrowserRouter([
       },
       {path: ':id', element: <ProductDetail />, loader: loadEachProduct},
       {path: 'cart', element: <CartPage />},
-      {path: 'user-profile', element: <ProfilePage />, loader: singleUserLoader , action: changeUserDataAction},
+      {
+        path: 'user-profile', 
+        element: 
+          <Suspense fallback={<p>loading...</p>}>
+            <ProfilePage />
+          </Suspense>, 
+        loader: () => import('./pages/ProfilePage').then(module => module.singleUserLoader()) , 
+        action: changeUserDataAction
+      }
     ]
   },
   

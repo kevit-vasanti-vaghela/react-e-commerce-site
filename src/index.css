@@ -1,11 +1,14 @@
+
 :root {
-  --primary-color:bisque;
+  --primary-color:orange;
   --text-color: brown;
   --button-background:rgb(201, 64, 64);
   --button-text:rgb(248, 235, 235)
 }
 body {
   margin: 0;
+  background: url('/src/images/favpng_poster-shopping-promotion-wallpaper.png') no-repeat center top fixed rgba(216, 165, 108, 0.2) ;
+  /* background-size: cover; */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
