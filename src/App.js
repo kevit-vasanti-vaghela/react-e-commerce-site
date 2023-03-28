@@ -14,6 +14,7 @@ import ProductRootPage from "./pages/ProductRootPage";
 // import { loader as productLoader} from "./components/ProductList";
 import { loadEachProduct } from "./pages/ProductDetail";
 import { changeUserDataAction } from "./pages/ProfilePage";
+import { signUpAction } from "./pages/SignUpPage";
 
 const LoginPage = lazy(() => import('./pages/LoginPage'))
 const Products = lazy(() => import('./pages/Products'))
@@ -42,7 +43,7 @@ const router = createBrowserRouter([
             <SignUpPage />
           </Suspense>
         , 
-        action: () => import('./pages/SignUpPage').then(module => module.signUpAction())
+        action: signUpAction
       },
       {path: 'checkout', element: <CheckoutPage />},
     ]
