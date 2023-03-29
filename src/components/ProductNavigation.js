@@ -41,7 +41,7 @@ const ProductNavigation = () => {
             </button>
           </li>
           <li>
-            <button onClick={checkoutHandler} style={{backgroundColor:'transparent', color:'brown', marginTop:'-10px'}}>
+            <button onClick={checkoutHandler} style={{backgroundColor:'transparent', color:'brown', marginTop:'-10px', border:'none'}}>
               Checkout
             </button>
           </li>

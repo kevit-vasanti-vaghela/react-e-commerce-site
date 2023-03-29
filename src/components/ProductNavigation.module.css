@@ -39,7 +39,7 @@
    .badge {
     background-color:rgb(250, 211, 164);
     border-radius: 30px;
-    padding: 0.15rem 1.25rem;
+    padding: 0.15rem 1rem;
     color: brown;
     border-color: brown;
   }
@@ -47,7 +47,10 @@
   .cart-button {
     background-color: transparent;
     color: brown;
-    margin-top: -10px;
+    margin-top: 4px;
+    border-radius: 20px;
+    border: 0.5px solid brown;
+    padding:0.7rem 1.7rem;
   }
   
   .cart-button:hover,
