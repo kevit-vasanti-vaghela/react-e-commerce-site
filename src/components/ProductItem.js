@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import classes from './ProductItem.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { cartActions } from '../store/cart-slice'
+import ProductQuantityForm from './ProductQuantityForm'
 
 const ProductItem = ({ product }) => {
   const enteredQuantity = useRef();
@@ -48,14 +49,14 @@ const ProductItem = ({ product }) => {
                         .map((item) => item.quantity)
               }
           </div> : ''} */}
-          <div>
+          {/* <div>
           <form onSubmit={addToCartHandler} className={classes['quantity-form']}>
             <label className={classes['quantity-form-label']} for="quantity">Qty:</label>
             <input ref={enteredQuantity} className={classes['quantity-form-input']} type="number" id="quantity" name="quantity" min="1" max="5" />
             <button className={classes['add-button']}>ADD</button>
           </form>
-          </div>
-          
+          </div> */}
+          <ProductQuantityForm enteredQuantity={enteredQuantity} addToCart={addToCartHandler}/>
           {/* <button 
           className={classes['add-remove-button']} 
           onClick={removeItemFromCartHandler}

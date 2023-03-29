@@ -8,7 +8,7 @@ const CartItem = (props) => {
     const { item, quantity, total, price, id } = props.item;
 
     const addItemHandler = () => {
-        dispatch(cartActions.addItemToCart({
+        dispatch(cartActions.addSingleItemToCart({
           id,
           item,
           price,
