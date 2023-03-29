@@ -6,6 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 const ProductList = () => {
     const [searchTerm, setSearchTerm] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
     const [products, setProducts] = useState([]);
     const [activePage, setActivePage] = useState(1);
     const productData = useLoaderData();
@@ -44,9 +45,14 @@ const ProductList = () => {
 
     const onChangeHandler = (e) => {
         setSearchTerm(e.target.value)
+        setIsLoading(true)
+        setTimeout(() => {
+            setIsLoading(false)
+        },500)
     }
 
     const filteredProducts = getFilteredProducts(searchTerm,products)
+    let showNoResult = filteredProducts.length === 0 ? true : false
   return (
     <div className={classes.products}>
         <input className={classes.searchbar} type="search" onChange={onChangeHandler} value={searchTerm} placeholder='Search Products' />
@@ -54,13 +60,15 @@ const ProductList = () => {
             dataLength={filteredProducts.length} //This is important field to render the next data
             next={fetchProducts}
             hasMore={filteredProducts.length < productData.length}
-            loader={<h4>Loading...</h4>}
+           
         >
-            <ul className={classes.list}>
+             {!isLoading && <ul className={classes.list}>
                 {filteredProducts.map((product) => (
-                    <ProductItem key={product.id} product={product}/>
+                     <ProductItem key={product.id} product={product}/>
                 ))}
-            </ul>
+            </ul>}
+            {isLoading && <p style={{textAlign:'center'}}>Loading...</p>}
+            {!isLoading && showNoResult && <p style={{textAlign:'center'}}>No Result Found.</p>}
         </InfiniteScroll>
     </div>
   )

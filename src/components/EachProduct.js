@@ -19,10 +19,10 @@ const EachProduct = ({ product }) => {
         ))}
       </Carousel>
       <h1>{product[0].item}</h1>
-      <h2>{product[0].price.toFixed(2)}</h2>
+      <h2>${product[0].price.toFixed(2)}</h2>
       <p>{product[0].description}</p>
       <menu className={classes.actions}>
-        <Link to=".." relative='route'>GO BACK</Link>
+        <Link to=".." relative='route'>BACK</Link>
         <button onClick={() => dispatch(cartActions.addItemToCart({id: product[0].id, price: product[0].price, item: product[0].item }))}>ADD</button> 
       </menu>
     </article>

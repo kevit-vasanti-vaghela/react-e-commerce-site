@@ -21,7 +21,7 @@ const ProductItem = ({ product }) => {
         <Link to={`/products/${product.id}`}>
             <img src={product.avatar} alt={product.item}/>
             <h2>{product.item}</h2>
-            <p>{product.price}$</p>
+            <p>${product.price.toFixed(2)}</p>
         </Link>
         <button className={classes.actions} onClick={addToCartHandler}>ADD</button>
     </li>
