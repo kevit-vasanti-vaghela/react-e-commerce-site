@@ -1,17 +1,12 @@
 import React from 'react'
 import classes from './SignUpForm.module.css'
-import { Form, useNavigate } from 'react-router-dom'
+import { Form } from 'react-router-dom'
 
 
 const SignUpForm = ({ data, onProceed }) => {
-  // const navigate = useNavigate();
-  // const updateddata = useActionData();
-  // console.log('UPDATED_DATA',updateddata);
   const ordered = localStorage.getItem('ordered');
   console.log('ORDERED',ordered)
   
-  
-  // console.log('SINGLE',data[0].firstname)
   return (
     <div className={classes['signup-div']}>
       <Form method={data ? 'post' : 'post'} className={classes.form}>

@@ -70,10 +70,6 @@
   .cart-button {
     background-color: transparent;
     color: brown;
-    /* margin-top: -3px; */
-    /* border-radius: 20px; */
-    /* border: 0.5px solid brown; */
-    /* padding:0.7rem 1.7rem; */
     border: none;
   }
   
@@ -85,19 +81,6 @@
   .cart-button span {
     margin: 0 0.1rem;
   }
-
-  /* .cartIcon {
-    animation: rotate 300s ease-in-out;
-  }
-
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: translateY(-300deg);
-    }
-  } */
 
   .bump {
     animation: bump 300ms ease-in-out;

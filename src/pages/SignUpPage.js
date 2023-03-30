@@ -47,13 +47,6 @@ export async function signUpAction({ request }) {
     })
     console.log('RESPONSE',response);
     localStorage.setItem('user',JSON.stringify(userData))
-    // localStorage.setItem('auth', true);
-
-    // let auth = getAuthToken();
-    // if(auth) {
-    //   return redirect('/&/products')
-    // }
-
     return redirect('/login')
 }
 

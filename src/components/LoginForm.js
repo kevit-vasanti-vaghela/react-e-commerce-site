@@ -48,7 +48,6 @@ const LoginForm = () => {
             <h2 className={modalClasses['modal-heading']}>Invalid Credentials</h2>
             <button className={modalClasses['modal-close']} onClick={modalHandler}>Close</button>
           </Card>
-           
         </Modal>
       }
       <form onSubmit={checkLogin} className={classes.form}>

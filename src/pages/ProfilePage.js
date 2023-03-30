@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useLoaderData, useNavigate } from 'react-router-dom'
 import SignUpForm from '../components/SignUpForm'
-import { redirect, useActionData } from 'react-router-dom'
+import { useActionData } from 'react-router-dom'
 import Modal from '../UI/Modal'
 import Checkout from '../components/Checkout'
 
@@ -100,11 +100,5 @@ export async function changeUserDataAction({ request }) {
     })
   const responseData = await response.json();
   console.log('CHANGE-USER',responseData)
-  
-  // if(localStorage.getItem('ordered')){
-  //   localStorage.clear()
-  //   return redirect('/checkout')
-  // }
-  // return redirect('/products')
   return responseData
 }

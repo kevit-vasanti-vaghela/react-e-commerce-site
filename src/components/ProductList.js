@@ -6,7 +6,6 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 const ProductList = () => {
 
-    const [showAddedItem, setShowAddedItem] = useState(false);
     const [searchTerm, setSearchTerm] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [products, setProducts] = useState([]);
@@ -17,8 +16,7 @@ const ProductList = () => {
     // fetch products data
      const fetchProducts = useCallback(async() => {
         const url = new URL(`https://641adba89b82ded29d438067.mockapi.io/products?page=${activePage}&limit=10`)
-        // url.searchParams.append('page', 1);
-        // url.searchParams.append('limit', 10);
+        
         const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -37,9 +35,6 @@ const ProductList = () => {
         fetchProducts()
      },[])
 
-     
-    
-    // console.log(productData)
     const getFilteredProducts = (searchTerm,products) => {
         return products.filter((product) => 
          product.item.toLowerCase().includes(searchTerm.toLowerCase()))
@@ -82,8 +77,6 @@ export default ProductList
 
 export async function productsLoader() {
     const url = new URL('https://641adba89b82ded29d438067.mockapi.io/products');
-    // url.searchParams.append('page', 1);
-    // url.searchParams.append('limit', 10);
     const response = await fetch(url, {
         method: 'GET',
         headers: {

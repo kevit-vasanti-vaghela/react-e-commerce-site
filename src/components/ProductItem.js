@@ -25,8 +25,6 @@ const ProductItem = ({ product }) => {
 
  
   return (
-    <>
-     
       <li className={classes.item}>
           <Link to={product.id}>
               <img src={product.avatar} alt={product.item}/>
@@ -35,8 +33,6 @@ const ProductItem = ({ product }) => {
           </Link>
           <ProductQuantityForm enteredQuantity={enteredQuantity} addToCart={addToCartHandler}/>
       </li>
-    </>
-    
   )
 }
 

@@ -1,15 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import classes from './Cart.module.css'
 import Card from '../UI/Card'
 import { useDispatch, useSelector } from 'react-redux'
 import CartItem from './CartItem'
 import { cartActions } from '../store/cart-slice'
-// import Modal from '../UI/Modal'
-// import Checkout from './Checkout'
 import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
-  // const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
     const dispatch = useDispatch();
     const cartItems = useSelector(state=> state.cart.items)
@@ -26,23 +23,9 @@ const Cart = () => {
       navigate('/user-profile')
     }
 
-    // const modalHandler = () => {
-    //   setShowModal(false)
-    //   navigate('/user-profile')
-    // }
-
     const emptyCart = cartItems.length === 0;
 
   return (
-    // <>
-    // {/* {
-    //     showModal && 
-    //     <Modal >
-    //        {/* <h2 className={modalClasses['modal-heading']}>Invalid Credentials</h2>
-    //        <button className={modalClasses['modal-close']} onClick={modalHandler}>Close</button> */}
-    //        <Checkout onClose={modalHandler}/>
-    //     </Modal>
-    //   } */}
     <Card className={classes.cart}>
       {emptyCart && <h2 style={{color:'brown', marginLeft:'250px'}}>Cart is Empty.</h2>}
       {!emptyCart && <h2 style={{color:'brown'}}>Your Shopping Cart</h2>}
@@ -67,8 +50,6 @@ const Cart = () => {
             <button className={classes['order-button']}  onClick={orderHandler}>Order</button>
       </div>}
     </Card>
-    // </>
-    
   )
   
 }
