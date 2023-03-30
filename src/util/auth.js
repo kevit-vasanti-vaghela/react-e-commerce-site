@@ -23,9 +23,6 @@ export function getSignedInUser() {
     return  signedInUser;
 }
 
-export function checkOrderStatus() {
-    const orderStatus = JSON.parse(localStorage.getItem('ordered'));
-    return  orderStatus;
-}
+
 
 
