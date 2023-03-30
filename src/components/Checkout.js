@@ -4,7 +4,8 @@ import Card from '../UI/Card'
 import classes from './Checkout.module.css'
 
 
-const Checkout = () => {
+
+const Checkout = (props) => {
     const cartItems = useSelector(state=> state.cart.items)
     const Amount = cartItems.map((item) => {
         return item.totalPrice
@@ -12,6 +13,8 @@ const Checkout = () => {
         return total + item;
     },0)
     console.log('CHECKOUT CART',cartItems)
+
+   
     return (
         <Card className={classes.cart}>
         <h2 style={{color:'brown', textAlign:'center'}}>You have ordered.</h2>
@@ -36,6 +39,7 @@ const Checkout = () => {
           
         </ul>
         <h2 style={{textAlign:'center'}}>Total Amount : ${Amount.toFixed(2)}</h2>
+        <button className={classes['ordered-cart-close']} onClick={props.onClose}>Close</button>
      </Card>
     )
 

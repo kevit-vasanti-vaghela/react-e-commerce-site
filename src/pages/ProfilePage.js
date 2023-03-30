@@ -1,11 +1,25 @@
-import React from 'react'
-import { useLoaderData } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useLoaderData, useNavigate } from 'react-router-dom'
 import SignUpForm from '../components/SignUpForm'
-import { redirect } from 'react-router-dom'
+import { redirect, useActionData } from 'react-router-dom'
+import Modal from '../UI/Modal'
+import Checkout from '../components/Checkout'
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
+  const updateddata = useActionData();
+  const [showModal, setShowModal] = useState(false);
+  console.log('UPDATED_DATA',updateddata);
   const ordered = localStorage.getItem('ordered');
   const data = useLoaderData();
+  const proceedHandler = () => {
+    setShowModal(true)
+  }
+  const modalHandler = () => {
+    setShowModal(false)
+    localStorage.removeItem('ordered');
+    navigate('/')
+  }
   const customerDetails = <h1 
                             style={{
                                 textAlign:'center',
@@ -24,8 +38,14 @@ const customerProfile = <h1
                         </h1> 
   return (
     <div>
+       {
+        showModal && 
+        <Modal >
+           <Checkout onClose={modalHandler}/>
+        </Modal>
+      }
       { ordered ? customerDetails : customerProfile }
-      <SignUpForm data={data} request='post'/>
+      <SignUpForm data={data} request='post' onProceed={proceedHandler}/>
     </div>
   )
 }
@@ -81,10 +101,10 @@ export async function changeUserDataAction({ request }) {
   const responseData = await response.json();
   console.log('CHANGE-USER',responseData)
   
-  if(localStorage.getItem('ordered')){
-    localStorage.clear()
-    return redirect('/checkout')
-  }
-  return redirect('/products')
-  // return responseData
+  // if(localStorage.getItem('ordered')){
+  //   localStorage.clear()
+  //   return redirect('/checkout')
+  // }
+  // return redirect('/products')
+  return responseData
 }

@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { cartActions } from '../store/cart-slice'
 import Modal from '../UI/Modal'
 import modalClasses from '../UI/Modal.module.css'
+import Card from '../UI/Card'
 
 
 
@@ -43,8 +44,11 @@ const LoginForm = () => {
       {
         showModal && 
         <Modal >
-           <h2 className={modalClasses['modal-heading']}>Invalid Credentials</h2>
-           <button className={modalClasses['modal-close']} onClick={modalHandler}>Close</button>
+          <Card>
+            <h2 className={modalClasses['modal-heading']}>Invalid Credentials</h2>
+            <button className={modalClasses['modal-close']} onClick={modalHandler}>Close</button>
+          </Card>
+           
         </Modal>
       }
       <form onSubmit={checkLogin} className={classes.form}>

@@ -4,8 +4,8 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { getSignedInUser } from '../util/auth'
 const ProductNavigation = () => {
-  const [cartIconisMoved, setCartIconIsMoved] = useState(false);
-  const cartIconClasses = `fa-solid fa-cart-shopping ${cartIconisMoved ? classes.bump : ''}`
+  const [cartIconIsMoved, setCartIconIsMoved] = useState(false);
+  const cartIconClasses = `fa-solid fa-cart-shopping ${cartIconIsMoved ? classes.bump : ''}`
   const signedInUser = getSignedInUser()
   const navigate = useNavigate();
   const cartQuantity = useSelector(state=> state.cart.totalQuantity);
@@ -69,7 +69,7 @@ const ProductNavigation = () => {
           <li className={classes.item}>
                 <NavLink
                 
-                to="/products/user-profile"
+                to="user-profile"
                 className={({ isActive }) =>
                     isActive ? classes.active : undefined
                 }

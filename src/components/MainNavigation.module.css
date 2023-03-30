@@ -36,3 +36,77 @@
    li {
     list-style-type: none;
    }
+
+   .badge {
+    background-color:rgb(250, 211, 164);
+    border-radius: 30px;
+    padding: 0.19rem 0.9rem;
+    color: brown;
+    border-color: brown;
+    margin-top: -2px;
+  }
+
+  .checkout {
+    border: none;
+    /* border-radius: 30px; */
+    background-color:transparent; 
+    color:brown; 
+    /* margin-top:14px;  */
+    /* font-size:16px; */
+    /* padding:0.7rem 1.7rem; */
+    font-weight: 600;
+  } 
+
+  .cart-button {
+    background-color: transparent;
+    color: brown;
+    /* margin-top: -3px; */
+    /* border-radius: 20px; */
+    /* border: 0.5px solid brown; */
+    /* padding:0.7rem 1.7rem; */
+    border: none;
+  }
+  
+  .cart-button:hover,
+  .cart-button:active {
+    font-weight: 500;
+  }
+  
+  .cart-button span {
+    margin: 0 0.1rem;
+  }
+
+  /* .cartIcon {
+    animation: rotate 300s ease-in-out;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: translateY(-300deg);
+    }
+  } */
+
+  .bump {
+    animation: bump 300ms ease-in-out;
+  }
+  
+  @keyframes bump {
+    0% {
+      -webkit-transform:  scale(1) rotateZ(0deg);
+    }
+    10% {
+       -webkit-transform:   scale(.9) rotateZ(-20deg);
+    }
+    30% {
+       -webkit-transform:   scale(1.1) rotateZ(-40deg);
+    }
+    50% {
+       -webkit-transform:  scale(1.15) rotateZ(10deg);
+    }
+    100% {
+       -webkit-transform:  scale(1) rotateZ(0deg);
+    }
+  }

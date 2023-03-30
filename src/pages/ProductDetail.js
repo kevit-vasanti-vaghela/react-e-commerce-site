@@ -15,6 +15,8 @@ const ProductDetail = () => {
 
 export default ProductDetail
 
+
+//single user Loader
 export async function loadEachProduct({params}) {
   const url = new URL('https://641adba89b82ded29d438067.mockapi.io/products');
   const productId = params.id

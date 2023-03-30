@@ -1,9 +1,42 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React,{ useEffect, useState } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { getAuthToken, getSignedInUser } from '../util/auth'
 import classes from './MainNavigation.module.css'
+import { useSelector } from 'react-redux'
 
 
 const MainNavigation = () => {
+  const navigate = useNavigate();
+  const [cartIconIsMoved, setCartIconIsMoved] = useState(false);
+  const signedInUser = getSignedInUser()
+  const cartQuantity = useSelector(state=> state.cart.totalQuantity);
+  const cartItems = useSelector(state=> state.cart.items);
+  const cartIconClasses = `fa-solid fa-cart-shopping ${cartIconIsMoved ? classes.bump : ''}`
+
+  useEffect(() => {
+    if(cartItems.length === 0 ){
+      return
+    }
+    setCartIconIsMoved(true)
+    const timer = setTimeout(() => {
+      setCartIconIsMoved(false)
+    },300)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  },[cartItems])
+
+  const auth = getAuthToken();
+  const checkoutHandler = () => {
+    localStorage.clear();
+    navigate('/')
+  }
+
+  const moveToCartHandler = () => {
+    navigate('cart')
+  }
+
   return (
     <div className={classes['nav-div']}>
         <header className={classes.header}>
@@ -20,11 +53,22 @@ const MainNavigation = () => {
                 Home
                 </NavLink>
             </li>
+            {auth && <li>
+                <NavLink
+                to="products"
+                className={({ isActive }) =>
+                    isActive ? classes.active : undefined
+                }
+                end
+                >
+                Products
+                </NavLink>
+            </li>}
         </ul>
     </nav>
     <nav>
         <ul className={classes.list}>
-          <li>
+          {!auth && <li>
             <NavLink
               to="/login"
               className={({ isActive }) =>
@@ -34,8 +78,8 @@ const MainNavigation = () => {
             >
              Login
             </NavLink>
-          </li>
-          <li>
+          </li>}
+          {!auth && <li>
             <NavLink
               to="signup"
               className={({ isActive }) =>
@@ -44,7 +88,31 @@ const MainNavigation = () => {
             >
               SignUp
             </NavLink>
-          </li>
+          </li>}
+          {auth && <li className={classes.item}>
+            <button className={classes['cart-button']} onClick={moveToCartHandler}>
+              <i style={{fontSize:'20px'}} className={cartIconClasses}></i>
+              <span className={classes.badge}>{cartQuantity}</span>
+            </button>
+          </li>}
+          {auth && <li className={classes.item}>
+            <button className={classes.checkout} onClick={checkoutHandler} >
+              Checkout
+            </button>
+          </li>}
+          {auth && <li className={classes.item}>
+                <NavLink
+                
+                to="user-profile"
+                className={({ isActive }) =>
+                    isActive ? classes.active : undefined
+                }
+                end
+                >
+                {signedInUser ? signedInUser.firstname : ''}
+                <i className="fa-solid fa-user" style={{ marginLeft:'20px'}}></i>
+                </NavLink>
+            </li>}
         </ul>
       </nav>
     </header>

@@ -1,14 +1,16 @@
 import React from 'react'
 import classes from './SignUpForm.module.css'
-import { Form } from 'react-router-dom'
+import { Form, useNavigate } from 'react-router-dom'
 
 
-const SignUpForm = ({ data }) => {
+const SignUpForm = ({ data, onProceed }) => {
+  // const navigate = useNavigate();
+  // const updateddata = useActionData();
+  // console.log('UPDATED_DATA',updateddata);
   const ordered = localStorage.getItem('ordered');
   console.log('ORDERED',ordered)
-  // const saveFormDataHandler = () => {
-
-  // }
+  
+  
   // console.log('SINGLE',data[0].firstname)
   return (
     <div className={classes['signup-div']}>
@@ -46,7 +48,7 @@ const SignUpForm = ({ data }) => {
           <input id="country" type="text" name="country" defaultValue={data ? data[0].address.country : ''} required />
         </p>
         <div className={classes.actions}>
-          <button>{
+          <button onClick={(data && ordered) ? onProceed : ''}>{
           data && !ordered ? 
           'CHANGE' : 
           ((data && ordered) ? 
