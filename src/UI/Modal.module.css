@@ -18,8 +18,24 @@
   border-radius: 14px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 30;
-  animation: slide-down 300ms ease-out forwards;
+  animation: slide-down 500ms ease-out forwards;
 }
+
+.modal-heading {
+ text-align: center;
+}
+
+.modal-close {
+  text-decoration: none;
+    background-color:rgb(201, 64, 64);
+    font: inherit;
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    color: rgb(248, 235, 235);
+    border: none;
+    margin-left: 280px;
+ }
 
 @media (min-width: 768px) {
   .modal {
@@ -31,10 +47,10 @@
 @keyframes slide-down {
   from {
     opacity: 0;
-    transform: translateY(-3rem);
+    transform: translateY(-5rem);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(13rem);
   }
 }

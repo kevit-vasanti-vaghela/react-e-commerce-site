@@ -1,11 +1,15 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import classes from './LoginForm.module.css'
 import {useLoaderData, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { cartActions } from '../store/cart-slice'
+import Modal from '../UI/Modal'
+import modalClasses from '../UI/Modal.module.css'
+
 
 
 const LoginForm = () => {
+  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const enteredEmail = useRef();
   const enteredPassword = useRef();
@@ -22,13 +26,27 @@ const LoginForm = () => {
       localStorage.setItem('auth', true);
       localStorage.setItem('user',JSON.stringify(authData));
       return navigate('/products')
+    } else {
+      setShowModal(true)
     }
-    return navigate('/')
   }
+   
+  const modalHandler = () => {
+    setShowModal(false)
+  }
+   
     
   
   return (
     <div className={classes['login-div']}>
+
+      {
+        showModal && 
+        <Modal >
+           <h2 className={modalClasses['modal-heading']}>Invalid Credentials</h2>
+           <button className={modalClasses['modal-close']} onClick={modalHandler}>Close</button>
+        </Modal>
+      }
       <form onSubmit={checkLogin} className={classes.form}>
         <p>
           <label htmlFor="email">Email</label>
