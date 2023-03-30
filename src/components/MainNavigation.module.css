@@ -29,7 +29,8 @@
   
   .list a:hover,
   .list a.active {
-    color: var(--color-primary-800);
+    color: rgb(233, 66, 66);
+    font-weight: 600;
   }
 
    li {

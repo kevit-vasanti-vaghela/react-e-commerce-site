@@ -55,19 +55,20 @@ const ProductNavigation = () => {
     </nav>
     <nav>
         <ul className={classes.list}>
-          <li>
+          <li className={classes.item}>
             <button className={classes['cart-button']} onClick={moveToCartHandler}>
               <i style={{fontSize:'20px'}} className={cartIconClasses}></i>
               <span className={classes.badge}>{cartQuantity}</span>
             </button>
           </li>
-          <li>
-            <button onClick={checkoutHandler} style={{backgroundColor:'transparent', color:'brown', marginTop:'-10px', border:'none'}}>
+          <li className={classes.item}>
+            <button className={classes.checkout} onClick={checkoutHandler} >
               Checkout
             </button>
           </li>
-          <li style={{border: '0.5px solid brown', borderRadius:'20px', padding:'0.5rem 1.5rem'}}>
+          <li className={classes.item}>
                 <NavLink
+                
                 to="/products/user-profile"
                 className={({ isActive }) =>
                     isActive ? classes.active : undefined
