@@ -10,12 +10,12 @@
   color: brown;
 }
 
-
 .cart ul {
   list-style: none;
   padding: 0;
   margin: 0;
 } 
+
  .cancel-button {
     text-decoration: none;
     height: 40px;

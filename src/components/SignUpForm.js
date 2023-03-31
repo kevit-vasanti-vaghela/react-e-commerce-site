@@ -3,9 +3,10 @@ import classes from './SignUpForm.module.css'
 import { Form } from 'react-router-dom'
 
 
-const SignUpForm = ({ data, onProceed }) => {
+const SignUpForm = ({ data, showUpdating, onUpdate}) => {
   const ordered = localStorage.getItem('ordered');
   console.log('ORDERED',ordered)
+  
   
   return (
     <div className={classes['signup-div']}>
@@ -43,11 +44,10 @@ const SignUpForm = ({ data, onProceed }) => {
           <input id="country" type="text" name="country" defaultValue={data ? data[0].address.country : ''} required />
         </p>
         <div className={classes.actions}>
-          <button onClick={(data && ordered) ? onProceed : ''}>{
-          data && !ordered ? 
-          'CHANGE' : 
-          ((data && ordered) ? 
-          'PROCEED' : 'SAVE')}</button>
+          <button onClick={showUpdating ? onUpdate() : null}>{
+          data  ?
+          (showUpdating ? 'UPDATING...' : 'UPDATE')
+          : 'SAVE'}</button>
         </div>
       </Form>
     </div>

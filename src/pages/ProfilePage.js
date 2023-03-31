@@ -1,25 +1,30 @@
 import React, { useState } from 'react'
-import { useLoaderData, useNavigate } from 'react-router-dom'
+import { useLoaderData, useNavigate, useNavigation } from 'react-router-dom'
 import SignUpForm from '../components/SignUpForm'
 import { useActionData } from 'react-router-dom'
 import Modal from '../UI/Modal'
 import Checkout from '../components/Checkout'
+import Card from '../UI/Card'
+import modalClasses from '../UI/Modal.module.css'
 
 const ProfilePage = () => {
-  const navigate = useNavigate();
-  const updateddata = useActionData();
   const [showModal, setShowModal] = useState(false);
-  console.log('UPDATED_DATA',updateddata);
+  const navigate = useNavigate();
+  const navigation = useNavigation();
+  const showUpdating = navigation.state === 'loading'
+  const showUpdated = navigation.state === 'submitting'
+  const showIdle = navigation.state === 'idle'
   const ordered = localStorage.getItem('ordered');
   const data = useLoaderData();
-  const proceedHandler = () => {
+  const updateHandler = () => {
     setShowModal(true)
   }
   const modalHandler = () => {
     setShowModal(false)
-    localStorage.removeItem('ordered');
-    navigate('/')
+    navigate('/cart');
   }
+  
+  
   const customerDetails = <h1 
                             style={{
                                 textAlign:'center',
@@ -39,13 +44,24 @@ const customerProfile = <h1
   return (
     <div>
        {
-        showModal && 
+        showModal && showIdle && !showUpdating && !showUpdated &&
         <Modal >
-           <Checkout onClose={modalHandler}/>
-        </Modal>
+          <Card>
+            <h2 className={modalClasses['modal-heading']}>Updating Successful !</h2>
+            <button className={modalClasses['modal-close']} onClick={modalHandler}>Close</button>
+          </Card>
+        </Modal> 
       }
+      {/* {showModal && showIdle && !showUpdating && !showUpdated && <p>Updating Successful</p>} */}
       { ordered ? customerDetails : customerProfile }
-      <SignUpForm data={data} request='post' onProceed={proceedHandler}/>
+      <SignUpForm 
+      data={data} request='post' 
+      showUpdating={showUpdating} 
+      showUpdated={showUpdated}
+      showIdle={showIdle}
+      onUpdate={updateHandler}
+
+      />
     </div>
   )
 }
