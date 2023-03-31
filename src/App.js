@@ -6,7 +6,7 @@ import ProductDetail from "./pages/ProductDetail";
 import RootPage from "./pages/RootPage";
 import HomePage from "./pages/HomePage";
 import { loadEachProduct } from "./pages/ProductDetail";
-import { changeUserDataAction } from "./pages/ProfilePage";
+import { changeUserDataAction } from "./components/SignUpForm";
 import { signUpAction } from "./pages/SignUpPage";
 
 const LoginPage = lazy(() => import('./pages/LoginPage'))
@@ -18,6 +18,7 @@ const router = createBrowserRouter([
   {
     path:'/',
     element: <RootPage />,
+    
     children: [
       {index: true, element: <HomePage />},
       {
@@ -40,12 +41,13 @@ const router = createBrowserRouter([
       },
       {path: 'checkout', element: <CheckoutPage />},
       {
-        path: 'user-profile', 
+        path: 'user-profile',
+        id:'single-user',
         element: 
           <Suspense fallback={<p>loading...</p>}>
             <ProfilePage />
           </Suspense>, 
-        loader: () => import('./pages/ProfilePage').then(module => module.singleUserLoader()) , 
+        loader: () => import('./components/SignUpForm').then(module => module.singleUserLoader()) , 
         action: changeUserDataAction
       },
       {
@@ -65,7 +67,12 @@ const router = createBrowserRouter([
               },
         ]
       },
-      {path: 'cart', element: <CartPage />},
+      {
+        path: 'cart', 
+        element: <CartPage />,
+        loader: () => import('./components/SignUpForm').then(module => module.singleUserLoader()) , 
+        action: changeUserDataAction
+      },
     ]
   },
  

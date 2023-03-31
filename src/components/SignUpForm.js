@@ -3,9 +3,10 @@ import classes from './SignUpForm.module.css'
 import { Form } from 'react-router-dom'
 
 
-const SignUpForm = ({ data, showUpdating, onUpdate}) => {
+const SignUpForm = ({ data, showUpdating, onUpdate, cartUserData}) => {
   const ordered = localStorage.getItem('ordered');
   console.log('ORDERED',ordered)
+  console.log('CART USR DATA',cartUserData)
   
   
   return (
@@ -13,7 +14,7 @@ const SignUpForm = ({ data, showUpdating, onUpdate}) => {
       <Form method={data ? 'post' : 'post'} className={classes.form}>
         <p>
           <label htmlFor="firstname">FirstName</label>
-          <input id="firstname" type="text" name="firstname" defaultValue={data ? data[0].firstname : ''} required />
+          <input id="firstname" type="text" name="firstname" defaultValue={data  || (cartUserData && ordered) ? cartUserData[0].firstname : ''} required />
         </p>
         <p>
           <label htmlFor="lastname">LastName</label>
@@ -55,4 +56,55 @@ const SignUpForm = ({ data, showUpdating, onUpdate}) => {
 }
 
 export default SignUpForm
+
+export async function singleUserLoader() {
+  
+  const loggedInUser = JSON.parse(localStorage.getItem('user'));
+  const loggedInUserId = loggedInUser.id;
+
+  const url = new URL('https://641adba89b82ded29d438067.mockapi.io/users');
+  url.searchParams.append('id', loggedInUserId);
+  const response = await fetch(url ,{
+    method: 'GET',
+    headers: {'content-type':'application/json'},
+  })
+  const responseData = await response.json();
+  return responseData;
+}
+
+
+//Action function
+export async function changeUserDataAction({ request }) {
+
+  const data = await request.formData();
+  console.log("DATA",data)
+  const userData = {
+      firstname: data.get('firstname'),
+      lastname: data.get('lastname'),
+      mobile: data.get('mobile'),
+      address:{
+        city: data.get('city'),
+        state: data.get('state'),
+        country: data.get('country'),
+      }
+    };
+
+  const loggedInUser = JSON.parse(localStorage.getItem('user'));
+  const loggedInUserId = loggedInUser.id;
+  console.log('ID',loggedInUserId)
+  console.log('USERDATA',userData)
+
+  const response = await fetch('https://641adba89b82ded29d438067.mockapi.io/users/' + loggedInUserId , {
+      method: 'PUT',
+      headers: {
+        'content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://localhost:3000',
+      },
+      body: JSON.stringify(userData)
+    })
+  const responseData = await response.json();
+  console.log('CHANGE-USER',responseData)
+  return responseData
+}
+
 

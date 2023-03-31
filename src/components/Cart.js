@@ -4,15 +4,17 @@ import Card from '../UI/Card'
 import { useDispatch, useSelector } from 'react-redux'
 import CartItem from './CartItem'
 import { cartActions } from '../store/cart-slice'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLoaderData } from 'react-router-dom'
 import Modal from '../UI/Modal'
 import Checkout from './Checkout'
 import SignUpForm from './SignUpForm'
 
 const Cart = () => {
   const navigate = useNavigate();
+  const cartUserData = useLoaderData();
   const [showModal, setShowModal] = useState(false);
-
+  const [showForm, setShowForm] = useState(false);
+  console.log('FROM CART USER DATA', cartUserData)
     const dispatch = useDispatch();
     const cartItems = useSelector(state=> state.cart.items)
     const Amount = cartItems.map((item) => {
@@ -24,7 +26,7 @@ const Cart = () => {
     const showButtons = Amount > 0 ? true : false;
     console.log(cartItems)
     const orderHandler = () => {
-      setShowModal(true)
+      setShowForm(true)
       localStorage.setItem('ordered', true);
       
     }
@@ -39,12 +41,12 @@ const Cart = () => {
 
   return (
     <>
-     {
+     {/* {
         showModal && 
         <Modal >
            <Checkout onClose={modalHandler}/>
         </Modal>
-      }
+      } */}
     <Card className={classes.cart}>
       {emptyCart && <h2 style={{color:'brown', marginLeft:'250px'}}>Cart is Empty.</h2>}
       {!emptyCart && <h2 style={{color:'brown'}}>Your Shopping Cart</h2>}
@@ -69,6 +71,10 @@ const Cart = () => {
             <button className={classes['order-button']}  onClick={orderHandler}>Order</button>
       </div>}
     </Card>
+    {showForm && <SignUpForm 
+      cartUserData={cartUserData} 
+      request='post' 
+    />}
     </>
     
   )
@@ -77,4 +83,3 @@ const Cart = () => {
 
 export default Cart
  
-

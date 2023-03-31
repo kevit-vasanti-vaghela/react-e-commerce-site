@@ -23,8 +23,6 @@ const ProfilePage = () => {
     setShowModal(false)
     navigate('/cart');
   }
-  
-  
   const customerDetails = <h1 
                             style={{
                                 textAlign:'center',
@@ -52,7 +50,6 @@ const customerProfile = <h1
           </Card>
         </Modal> 
       }
-      {/* {showModal && showIdle && !showUpdating && !showUpdated && <p>Updating Successful</p>} */}
       { ordered ? customerDetails : customerProfile }
       <SignUpForm 
       data={data} request='post' 
@@ -68,53 +65,53 @@ const customerProfile = <h1
 
 export default ProfilePage
 
-//Loader function
-export async function singleUserLoader() {
+// // Loader function
+// export async function singleUserLoader() {
   
-  const loggedInUser = JSON.parse(localStorage.getItem('user'));
-  const loggedInUserId = loggedInUser.id;
+//   const loggedInUser = JSON.parse(localStorage.getItem('user'));
+//   const loggedInUserId = loggedInUser.id;
 
-  const url = new URL('https://641adba89b82ded29d438067.mockapi.io/users');
-  url.searchParams.append('id', loggedInUserId);
-  const response = await fetch(url ,{
-    method: 'GET',
-    headers: {'content-type':'application/json'},
-  })
-  const responseData = await response.json();
-  return responseData;
-}
+//   const url = new URL('https://641adba89b82ded29d438067.mockapi.io/users');
+//   url.searchParams.append('id', loggedInUserId);
+//   const response = await fetch(url ,{
+//     method: 'GET',
+//     headers: {'content-type':'application/json'},
+//   })
+//   const responseData = await response.json();
+//   return responseData;
+// }
 
 
-//Action function
-export async function changeUserDataAction({ request }) {
+// //Action function
+// export async function changeUserDataAction({ request }) {
 
-  const data = await request.formData();
-  console.log("DATA",data)
-  const userData = {
-      firstname: data.get('firstname'),
-      lastname: data.get('lastname'),
-      mobile: data.get('mobile'),
-      address:{
-        city: data.get('city'),
-        state: data.get('state'),
-        country: data.get('country'),
-      }
-    };
+//   const data = await request.formData();
+//   console.log("DATA",data)
+//   const userData = {
+//       firstname: data.get('firstname'),
+//       lastname: data.get('lastname'),
+//       mobile: data.get('mobile'),
+//       address:{
+//         city: data.get('city'),
+//         state: data.get('state'),
+//         country: data.get('country'),
+//       }
+//     };
 
-  const loggedInUser = JSON.parse(localStorage.getItem('user'));
-  const loggedInUserId = loggedInUser.id;
-  console.log('ID',loggedInUserId)
-  console.log('USERDATA',userData)
+//   const loggedInUser = JSON.parse(localStorage.getItem('user'));
+//   const loggedInUserId = loggedInUser.id;
+//   console.log('ID',loggedInUserId)
+//   console.log('USERDATA',userData)
 
-  const response = await fetch('https://641adba89b82ded29d438067.mockapi.io/users/' + loggedInUserId , {
-      method: 'PUT',
-      headers: {
-        'content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://localhost:3000',
-      },
-      body: JSON.stringify(userData)
-    })
-  const responseData = await response.json();
-  console.log('CHANGE-USER',responseData)
-  return responseData
-}
+//   const response = await fetch('https://641adba89b82ded29d438067.mockapi.io/users/' + loggedInUserId , {
+//       method: 'PUT',
+//       headers: {
+//         'content-Type': 'application/json',
+//         'Access-Control-Allow-Origin': 'https://localhost:3000',
+//       },
+//       body: JSON.stringify(userData)
+//     })
+//   const responseData = await response.json();
+//   console.log('CHANGE-USER',responseData)
+//   return responseData
+// }
