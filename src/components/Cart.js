@@ -7,6 +7,7 @@ import { cartActions } from '../store/cart-slice'
 import { useNavigate } from 'react-router-dom'
 import Modal from '../UI/Modal'
 import Checkout from './Checkout'
+import SignUpForm from './SignUpForm'
 
 const Cart = () => {
   const navigate = useNavigate();
