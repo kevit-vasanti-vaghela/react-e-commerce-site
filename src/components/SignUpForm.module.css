@@ -39,6 +39,7 @@
     gap: 1rem;
     justify-content: flex-end;
     align-items: center;
+    margin-top: 30px;
   }
   
   .actions button {

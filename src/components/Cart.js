@@ -34,6 +34,9 @@ const Cart = () => {
       setShowModal(true)
       localStorage.setItem('ordered', true);
     }
+    const cancelHandler = () => {
+      setShowForm(false)
+    }
 
 
     const emptyCart = cartItems.length === 0;
@@ -44,6 +47,12 @@ const Cart = () => {
       dispatch(cartActions.clearCart())
       navigate('/')
     }
+
+    const cartCancelHandler = () => {
+      dispatch(cartActions.clearCart())
+    }
+
+    
 
   return (
     <>
@@ -72,10 +81,10 @@ const Cart = () => {
         
       </ul>
       {!emptyCart && <h2 style={{marginLeft:'400px'}}>Total Amount : ${Amount.toFixed(2)}</h2>}
-      {showButtons && <div className={classes.actions} >
-            <button className={classes['cancel-button']} onClick={() =>dispatch(cartActions.clearCart())} >Cancel</button>
+      {showButtons && !showForm ? <div className={classes.actions} >
+            <button className={classes['cancel-button']} onClick={cartCancelHandler} >Cancel</button>
             <button className={classes['order-button']}  onClick={orderHandler}>Order</button>
-      </div>}
+      </div> : ''}
     </Card>
     {showForm && 
     <>
@@ -91,6 +100,7 @@ const Cart = () => {
         cartUserData={cartUserData} 
         request='post' 
         onProceed={proceedHandler}
+        onCancel={cancelHandler}
       />
     </>}
     

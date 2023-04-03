@@ -3,7 +3,7 @@ import classes from './SignUpForm.module.css'
 import { Form } from 'react-router-dom'
 
 
-const SignUpForm = ({ data, showUpdating, showUpdated, showIdle,  onUpdate, cartUserData, onProceed}) => {
+const SignUpForm = ({ data, showUpdating, showUpdated, showIdle,  onUpdate, cartUserData, onProceed, onCancel}) => {
   const ordered = localStorage.getItem('ordered');
   console.log('ORDERED',ordered)
   console.log('CART USR DATA',cartUserData);
@@ -100,6 +100,7 @@ const SignUpForm = ({ data, showUpdating, showUpdated, showIdle,  onUpdate, cart
             (cartUserData ?cartUserData[0].address.country : '')} required />
         </p>
         <div className={classes.actions}>
+          {cartUserData && <button style ={{marginRight:'310px'}} onClick={onCancel}>Cancel</button>}
           <button onClick={(!showUpdating && showIdle && !showUpdated )  ? onUpdate : (cartUserData ? onProceed : null)}>{
           data  ?
           (showUpdated ? 'UPDATING...' : 'UPDATE')
