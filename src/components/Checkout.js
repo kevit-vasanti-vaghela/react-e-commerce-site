@@ -7,7 +7,7 @@ import classes from './Checkout.module.css'
 
 
 const Checkout = (props) => {
-    const checkoutRef = useRef()
+   
   
     const cartItems = useSelector(state=> state.cart.items)
    
@@ -16,14 +16,12 @@ const Checkout = (props) => {
     }).reduce((total,item) => {
         return total + item;
     },0)
-    useEffect(() => {
-        checkoutRef.current?.focus();
-    },[])
+    
     console.log('CHECKOUT CART',cartItems)
    
    
     return (
-        <Card ref={checkoutRef} className={classes.cart}>
+        <Card  className={classes.cart}>
         <h2 style={{color:'brown', textAlign:'center'}} >You have ordered.</h2>
         <ul>
           {cartItems.map(item => (

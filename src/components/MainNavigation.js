@@ -42,7 +42,7 @@ const MainNavigation = () => {
         <header className={classes.header}>
       <nav>
         <ul className={classes.list}>
-            <li>
+            <li className={classes['nav-items']}>
                 <NavLink
                 to="/"
                 className={({ isActive }) =>
@@ -53,7 +53,7 @@ const MainNavigation = () => {
                 Home
                 </NavLink>
             </li>
-            {auth && <li>
+            {auth && <li className={classes['nav-items']}>
                 <NavLink
                 to="products"
                 className={({ isActive }) =>
@@ -68,7 +68,7 @@ const MainNavigation = () => {
     </nav>
     <nav>
         <ul className={classes.list}>
-          {!auth && <li>
+          {!auth && <li className={classes['nav-items']}>
             <NavLink
               to="/login"
               className={({ isActive }) =>
@@ -79,7 +79,7 @@ const MainNavigation = () => {
              Login
             </NavLink>
           </li>}
-          {!auth && <li>
+          {!auth && <li className={classes['nav-items']}>
             <NavLink
               to="signup"
               className={({ isActive }) =>
@@ -89,18 +89,18 @@ const MainNavigation = () => {
               SignUp
             </NavLink>
           </li>}
-          {auth && <li className={classes.item}>
+          {auth && <li className={classes['nav-items']}>
             <button className={classes['cart-button']} onClick={moveToCartHandler}>
               <i style={{fontSize:'20px'}} className={cartIconClasses}></i>
               <span className={classes.badge}>{cartQuantity}</span>
             </button>
           </li>}
-          {auth && <li className={classes.item}>
+          {auth && <li className={classes['nav-items']}>
             <button className={classes.checkout} onClick={checkoutHandler} >
               Checkout
             </button>
           </li>}
-          {auth && <li className={classes.item}>
+          {auth && <li className={classes['nav-items']}>
                 <NavLink
                 
                 to="user-profile"

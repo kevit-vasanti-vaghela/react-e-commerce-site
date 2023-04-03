@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router-dom'
 import ProductItem from './ProductItem'
 import classes from './ProductList.module.css'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import { checkAuthLoader } from '../util/auth'
 
 const ProductList = () => {
 

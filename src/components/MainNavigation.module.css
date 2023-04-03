@@ -33,11 +33,11 @@
     transform: scale(1.05);
   }
 
-   li {
+   .nav-items {
     list-style-type: none;
    }
 
-   li:hover {
+   .nav-items:hover {
     transform: scale(1.05);
    }
 

@@ -14,8 +14,9 @@ export function checkAuthLoader() {
     const auth = getAuthToken();
 
     if(!auth) {
-        return redirect('/signup');
+        return redirect('/');
     }
+    return null
 }
 
 export function getSignedInUser() {

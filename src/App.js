@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import { loadEachProduct } from "./pages/ProductDetail";
 import { changeUserDataAction } from "./components/SignUpForm";
 import { signUpAction } from "./pages/SignUpPage";
+import { checkAuthLoader } from "./util/auth";
 
 const LoginPage = lazy(() => import('./pages/LoginPage'))
 const Products = lazy(() => import('./pages/Products'))
@@ -39,7 +40,11 @@ const router = createBrowserRouter([
         , 
         action: signUpAction
       },
-      {path: 'checkout', element: <CheckoutPage />},
+      {
+        path: 'checkout', 
+        element: <CheckoutPage />,
+        // loader: checkAuthLoader
+      },
       {
         path: 'user-profile',
         id:'single-user',
@@ -48,7 +53,8 @@ const router = createBrowserRouter([
             <ProfilePage />
           </Suspense>, 
         loader: () => import('./components/SignUpForm').then(module => module.singleUserLoader()) , 
-        action: changeUserDataAction
+        action: changeUserDataAction,
+        // loader: checkAuthLoader
       },
       {
         path:'products', 
@@ -59,11 +65,13 @@ const router = createBrowserRouter([
                             <Products />
                           </Suspense>,  
                 loader: () => import('./components/ProductList').then(module => module.productsLoader()) ,
+                checkAuthLoader
               },
               {
                 path: ':id', 
                 element: <ProductDetail />, 
-                loader: loadEachProduct
+                loader: loadEachProduct,
+                // loader: checkAuthLoader,
               },
         ]
       },
@@ -71,7 +79,9 @@ const router = createBrowserRouter([
         path: 'cart', 
         element: <CartPage />,
         loader: () => import('./components/SignUpForm').then(module => module.singleUserLoader()) , 
-        action: changeUserDataAction
+        action: changeUserDataAction,
+        // loader: checkAuthLoader
+
       },
     ]
   },
