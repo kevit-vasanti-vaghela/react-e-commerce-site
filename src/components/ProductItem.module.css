@@ -4,6 +4,7 @@
     box-shadow: -5px 5px 10px 1px rgba(75, 74, 74, 0.2);
     padding: 1px;
     border-radius: 5px;
+    /* justify-content: space-between; */
   }
 
   .item a {

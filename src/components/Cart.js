@@ -27,13 +27,20 @@ const Cart = () => {
     console.log(cartItems)
     const orderHandler = () => {
       setShowForm(true)
+      // localStorage.setItem('ordered', true);
+      
+    }
+    const proceedHandler = () => {
+      setShowModal(true)
       localStorage.setItem('ordered', true);
       
     }
 
+
     const emptyCart = cartItems.length === 0;
     const modalHandler = () => {
       setShowModal(false)
+      setShowForm(false)
       localStorage.removeItem('ordered');
       dispatch(cartActions.clearCart())
       navigate('/')
@@ -41,12 +48,12 @@ const Cart = () => {
 
   return (
     <>
-     {/* {
+     {
         showModal && 
         <Modal >
            <Checkout onClose={modalHandler}/>
         </Modal>
-      } */}
+      }
     <Card className={classes.cart}>
       {emptyCart && <h2 style={{color:'brown', marginLeft:'250px'}}>Cart is Empty.</h2>}
       {!emptyCart && <h2 style={{color:'brown'}}>Your Shopping Cart</h2>}
@@ -74,6 +81,7 @@ const Cart = () => {
     {showForm && <SignUpForm 
       cartUserData={cartUserData} 
       request='post' 
+      onProceed={proceedHandler}
     />}
     </>
     

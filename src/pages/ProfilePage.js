@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { useLoaderData, useNavigate, useNavigation } from 'react-router-dom'
 import SignUpForm from '../components/SignUpForm'
-import { useActionData } from 'react-router-dom'
 import Modal from '../UI/Modal'
-import Checkout from '../components/Checkout'
 import Card from '../UI/Card'
 import modalClasses from '../UI/Modal.module.css'
 
@@ -18,6 +16,7 @@ const ProfilePage = () => {
   const data = useLoaderData();
   const updateHandler = () => {
     setShowModal(true)
+    // console.log('hello')
   }
   const modalHandler = () => {
     setShowModal(false)
@@ -42,7 +41,7 @@ const customerProfile = <h1
   return (
     <div>
        {
-        showModal && showIdle && !showUpdating && !showUpdated &&
+        showModal &&  showIdle && !showUpdated && !showUpdated &&
         <Modal >
           <Card>
             <h2 className={modalClasses['modal-heading']}>Updating Successful !</h2>
@@ -57,7 +56,6 @@ const customerProfile = <h1
       showUpdated={showUpdated}
       showIdle={showIdle}
       onUpdate={updateHandler}
-
       />
     </div>
   )

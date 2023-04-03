@@ -26,9 +26,11 @@ const ProductItem = ({ product }) => {
  
   return (
       <li className={classes.item}>
-          <Link to={product.id}>
-              <img src={product.avatar} alt={product.item}/>
-              <h2>{product.item}</h2>
+          <Link   to={product.id}>
+              <div style={{width:'150px',height:'150px',position:'relative'}}>
+                <img style={{width:'150px', height:'150px', position:'absolute', top:'0', left:'0', objectFit:'fill'}} src={product.avatar} alt={product.item}/>  
+              </div>
+              <h2 style={{marginLeft:'30px'}}>{product.item}</h2>
               <p>${product.price.toFixed(2)}</p>
           </Link>
           <ProductQuantityForm enteredQuantity={enteredQuantity} addToCart={addToCartHandler}/>

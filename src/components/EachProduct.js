@@ -40,7 +40,10 @@ const EachProduct = ({ product }) => {
       <h1>{product[0].item}</h1>
       <h2>${product[0].price.toFixed(2)}</h2>
       <p>{product[0].description}</p>
-      <ProductQuantityForm  addToCart={addToCartHandler} enteredQuantity={enteredQuantity}/>
+      <div style={{paddingRight:'300px'}}>
+
+        <ProductQuantityForm   addToCart={addToCartHandler} enteredQuantity={enteredQuantity}/>
+      </div>
         
     </article>
   )
