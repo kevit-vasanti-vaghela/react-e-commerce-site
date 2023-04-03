@@ -25,6 +25,8 @@ const Cart = () => {
 
     const showButtons = Amount > 0 ? true : false;
     console.log(cartItems)
+
+    
     const orderHandler = () => {
       setShowForm(true)
       // localStorage.setItem('ordered', true);
@@ -33,6 +35,7 @@ const Cart = () => {
     const proceedHandler = () => {
       setShowModal(true)
       localStorage.setItem('ordered', true);
+      window.scrollTo(500, 0);        
     }
     const cancelHandler = () => {
       setShowForm(false)
@@ -101,7 +104,6 @@ const Cart = () => {
         request='post' 
         onProceed={proceedHandler}
         onCancel={cancelHandler}
-        autofocus
       />
     </>}
     
