@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import classes from './SignUpForm.module.css'
 import { Form } from 'react-router-dom'
 
@@ -8,13 +8,17 @@ const SignUpForm = ({ data, showUpdating, showUpdated, showIdle,  onUpdate, cart
   console.log('ORDERED',ordered)
   console.log('CART USR DATA',cartUserData);
   console.log(' DATA',data);
- 
+  const formFocusRef = useRef();
+  useEffect(() => {
+    formFocusRef.current.focus();
+  },[])
   return (
     <div className={classes['signup-div']}>
       <Form method={data ? 'post' : 'post'} className={classes.form}>
         <p>
           <label htmlFor="firstname">FirstName</label>
           <input 
+          // ref={formFocusRef}
           id="firstname" 
           type="text" 
           name="firstname" 
@@ -101,7 +105,7 @@ const SignUpForm = ({ data, showUpdating, showUpdated, showIdle,  onUpdate, cart
         </p>
         <div className={classes.actions}>
           {cartUserData && <button style ={{marginRight:'310px'}} onClick={onCancel}>Cancel</button>}
-          <button onClick={(!showUpdating && showIdle && !showUpdated )  ? onUpdate : (cartUserData ? onProceed : null)}>{
+          <button ref={formFocusRef} onClick={(!showUpdating && showIdle && !showUpdated )  ? onUpdate : (cartUserData ? onProceed : null)}>{
           data  ?
           (showUpdated ? 'UPDATING...' : 'UPDATE')
           : (cartUserData ? 'PROCEED' : 'SAVE')}</button>

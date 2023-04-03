@@ -101,6 +101,7 @@ const Cart = () => {
         request='post' 
         onProceed={proceedHandler}
         onCancel={cancelHandler}
+        autofocus
       />
     </>}
     
