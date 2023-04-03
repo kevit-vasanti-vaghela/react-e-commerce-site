@@ -30,11 +30,15 @@
   .list a:hover,
   .list a.active {
     color: rgb(233, 66, 66);
-    font-weight: 600;
+    transform: scale(1.05);
   }
 
    li {
     list-style-type: none;
+   }
+
+   li:hover {
+    transform: scale(1.05);
    }
 
    .badge {
@@ -50,9 +54,15 @@
     border: none;
     background-color:transparent; 
     color:brown; 
-    font-weight: 600;
+    font-weight: 500;
+    font: inherit;
+    font-size: 17px;
   } 
 
+  .checkout:hover {
+    color: rgb(233, 66, 66);
+    transform: scale(1.05);
+  }
   .cart-button {
     background-color: transparent;
     color: brown;
@@ -61,7 +71,8 @@
   
   .cart-button:hover,
   .cart-button:active {
-    font-weight: 500;
+    transform: scale(1.05);
+    color: rgb(233, 66, 66);
   }
   
   .cart-button span {

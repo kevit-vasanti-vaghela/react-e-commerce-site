@@ -62,9 +62,12 @@ const ProductNavigation = () => {
             </button>
           </li>
           <li className={classes.item}>
-            <button className={classes.checkout} onClick={checkoutHandler} >
+            <NavLink>
+              <button  className={classes.checkout} onClick={checkoutHandler} >
               Checkout
             </button>
+            </NavLink>
+            
           </li>
           <li className={classes.item}>
                 <NavLink
