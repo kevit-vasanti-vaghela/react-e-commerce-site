@@ -33,7 +33,6 @@ const Cart = () => {
     const proceedHandler = () => {
       setShowModal(true)
       localStorage.setItem('ordered', true);
-      
     }
 
 
@@ -72,21 +71,31 @@ const Cart = () => {
         ))}
         
       </ul>
-      {!emptyCart && <h2 style={{marginLeft:'420px'}}>Total Amount : ${Amount.toFixed(2)}</h2>}
+      {!emptyCart && <h2 style={{marginLeft:'340px'}}>Total Amount : ${Amount.toFixed(2)}</h2>}
       {showButtons && <div className={classes.actions} >
             <button className={classes['cancel-button']} onClick={() =>dispatch(cartActions.clearCart())} >Cancel</button>
             <button className={classes['order-button']}  onClick={orderHandler}>Order</button>
       </div>}
     </Card>
-    {showForm && <SignUpForm 
-      cartUserData={cartUserData} 
-      request='post' 
-      onProceed={proceedHandler}
-    />}
-    </>
+    {showForm && 
+    <>
+      <h1 
+        style={{
+          textAlign:'center',
+          color:'brown'
+        }}
+      >
+        Customer Details
+      </h1> 
+      <SignUpForm 
+        cartUserData={cartUserData} 
+        request='post' 
+        onProceed={proceedHandler}
+      />
+    </>}
     
-  )
   
+  </>)
 }
 
 export default Cart
