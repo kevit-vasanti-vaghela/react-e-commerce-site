@@ -71,7 +71,7 @@ const Cart = () => {
         ))}
         
       </ul>
-      {!emptyCart && <h2 style={{marginLeft:'340px'}}>Total Amount : ${Amount.toFixed(2)}</h2>}
+      {!emptyCart && <h2 style={{marginLeft:'400px'}}>Total Amount : ${Amount.toFixed(2)}</h2>}
       {showButtons && <div className={classes.actions} >
             <button className={classes['cancel-button']} onClick={() =>dispatch(cartActions.clearCart())} >Cancel</button>
             <button className={classes['order-button']}  onClick={orderHandler}>Order</button>
