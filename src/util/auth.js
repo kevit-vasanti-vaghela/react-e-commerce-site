@@ -6,9 +6,9 @@ export function getAuthToken() {
     return auth;
 }
 
-export function tokenLoader() {
-    return getAuthToken()
-}
+// export function tokenLoader() {
+//     return getAuthToken()
+// }
 
 export function checkAuthLoader() {
     const auth = getAuthToken();
@@ -16,7 +16,7 @@ export function checkAuthLoader() {
     if(!auth) {
         return redirect('/');
     }
-    // return null
+    return null
 }
 
 export function getSignedInUser() {

@@ -9,6 +9,7 @@ import { loadEachProduct } from "./pages/ProductDetail";
 import { changeUserDataAction } from "./components/SignUpForm";
 import { signUpAction } from "./pages/SignUpPage";
 import { checkAuthLoader } from "./util/auth";
+import RouteProtection from "./pages/RouteProtection";
 
 const LoginPage = lazy(() => import('./pages/LoginPage'))
 const Products = lazy(() => import('./pages/Products'))
@@ -41,48 +42,56 @@ const router = createBrowserRouter([
         action: signUpAction
       },
       {
-        path: 'checkout', 
-        element: <CheckoutPage />,
-        loader: checkAuthLoader
-      },
-      {
-        path: 'user-profile',
-        id:'single-user',
-        element: 
-          <Suspense fallback={<p>loading...</p>}>
-            <ProfilePage />
-          </Suspense>, 
-        loader: () => import('./components/SignUpForm').then(module => module.singleUserLoader()) , 
-        action: changeUserDataAction,
-        // loader: checkAuthLoader
-      },
-      {
-        path:'products', 
-        children: [
-              {
-                index: true, 
-                element: <Suspense fallback={<p>loading...</p>}>
-                            <Products />
-                          </Suspense>,  
-                loader: () => import('./components/ProductList').then(module => module.productsLoader()) ,
-                
-              },
-              {
-                path: ':id', 
-                element: <ProductDetail />, 
-                loader: loadEachProduct,
-                // loader: checkAuthLoader,
-              },
+        index: '/',
+        element: <RouteProtection />,
+        loader: checkAuthLoader,
+        children:[
+          {
+            path: 'checkout', 
+            element: <CheckoutPage />,
+            
+          },
+          {
+            path: 'user-profile',
+            id:'single-user',
+            element: 
+              <Suspense fallback={<p>loading...</p>}>
+                <ProfilePage />
+              </Suspense>, 
+            loader: () => import('./components/SignUpForm').then(module => module.singleUserLoader()) , 
+            action: changeUserDataAction,
+            // loader: checkAuthLoader
+          },
+          {
+            path:'products', 
+            children: [
+                  {
+                    index: true, 
+                    element: <Suspense fallback={<p>loading...</p>}>
+                                <Products />
+                              </Suspense>,  
+                    loader: () => import('./components/ProductList').then(module => module.productsLoader()) ,
+                    
+                  },
+                  {
+                    path: ':id', 
+                    element: <ProductDetail />, 
+                    loader: loadEachProduct,
+                    // loader: checkAuthLoader,
+                  },
+            ]
+          },
+          {
+            path: 'cart', 
+            element: <CartPage />,
+            loader: () => import('./components/SignUpForm').then(module => module.singleUserLoader()) , 
+            action: changeUserDataAction,
+            // loader: checkAuthLoader
+    
+          },
         ]
       },
-      {
-        path: 'cart', 
-        element: <CartPage />,
-        loader: () => import('./components/SignUpForm').then(module => module.singleUserLoader()) , 
-        action: changeUserDataAction,
-        // loader: checkAuthLoader
-
-      },
+      
     ]
   },
  
