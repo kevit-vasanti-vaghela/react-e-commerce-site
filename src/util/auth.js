@@ -16,7 +16,7 @@ export function checkAuthLoader() {
     if(!auth) {
         return redirect('/');
     }
-    return null
+    // return null
 }
 
 export function getSignedInUser() {

@@ -43,7 +43,7 @@ const router = createBrowserRouter([
       {
         path: 'checkout', 
         element: <CheckoutPage />,
-        // loader: checkAuthLoader
+        loader: checkAuthLoader
       },
       {
         path: 'user-profile',
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
                             <Products />
                           </Suspense>,  
                 loader: () => import('./components/ProductList').then(module => module.productsLoader()) ,
-                checkAuthLoader
+                
               },
               {
                 path: ':id', 
