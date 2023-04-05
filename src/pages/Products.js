@@ -1,8 +1,9 @@
 import React from 'react'
 import ProductList from '../components/ProductList'
+import { getAuthToken } from '../util/auth'
 
 const Products = () => {
-  
+  const auth = getAuthToken();
   return (
     <>
       {/* <h1 
@@ -13,7 +14,7 @@ const Products = () => {
       >
         Products
       </h1> */}
-      <ProductList />
+      {auth && <ProductList />}
     </>
   )
 }
