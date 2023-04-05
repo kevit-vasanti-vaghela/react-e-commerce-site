@@ -41,10 +41,7 @@
     border: none;
   }
 
-  h1, h2, p {
-    color: brown;
-  }
-
+ 
   .back {
     position: absolute;
     top: -5px;

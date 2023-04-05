@@ -37,9 +37,9 @@ const EachProduct = ({ product }) => {
           </div>
         ))}
       </Carousel>
-      <h1>{product[0].item}</h1>
-      <h2>${product[0].price.toFixed(2)}</h2>
-      <p>{product[0].description}</p>
+      <h1 style={{color: 'brown'}}>{product[0].item}</h1>
+      <h2 style={{color: 'brown'}}>${product[0].price.toFixed(2)}</h2>
+      <p style={{color: 'brown'}}>{product[0].description}</p>
       <div style={{paddingRight:'300px'}}>
 
         <ProductQuantityForm   addToCart={addToCartHandler} enteredQuantity={enteredQuantity}/>
