@@ -18,8 +18,8 @@ const Notification = (props) => {
   const cssClasses = `${classes.notification} ${specialClasses}`;
   return (
     <section className={cssClasses}>
-      <h2>{props.title}</h2>
-      <p>{props.message}</p>
+      <h2 style={{color:'white'}}>{props.title}</h2>
+      <p style={{color:'white'}}>{props.message}</p>
       <button 
       onClick={() => dispatch(uiActions.clearNotification({}))}
         style={{
