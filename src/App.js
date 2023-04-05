@@ -123,7 +123,7 @@ function App() {
   },[cart, dispatch])
 
   return (
-    <>
+    <div>
       {
         notification && 
         <Notification 
@@ -134,7 +134,7 @@ function App() {
         />
       }
       <RouterProvider router={router} />
-    </>
+    </div>
   );
 }
 

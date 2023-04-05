@@ -15,8 +15,12 @@ const Cart = () => {
   const [showModal, setShowModal] = useState(false);
   const [showForm, setShowForm] = useState(false);
   console.log('FROM CART USER DATA', cartUserData)
+  const loggedInUser = JSON.parse(localStorage.getItem('user'));
+  const loggedInUserId = loggedInUser.id;
     const dispatch = useDispatch();
     const cartItems = useSelector(state=> state.cart.items)
+    const totalQuantity = useSelector(state=> state.cart.totalQuantity)
+    // const cart = useSelector(state=> state.cart)
     const Amount = cartItems.map((item) => {
         return item.totalPrice
     }).reduce((total,item) => {
@@ -35,8 +39,18 @@ const Cart = () => {
     const proceedHandler = () => {
       setShowModal(true)
       localStorage.setItem('ordered', true);
-      window.scrollTo(500, 0);        
+      window.scrollTo(500, 0);   
+      fetch('https://641adba89b82ded29d438067.mockapi.io/users/' + loggedInUserId , {
+      method: 'PUT',
+      headers: {
+        'content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://localhost:3000',
+      },
+      body: JSON.stringify({orders: [{cartItems, totalQuantity}]})
+    }).then((response) => response.json()).then(data => console.log(data))
+   
     }
+
     const cancelHandler = () => {
       setShowForm(false)
     }
