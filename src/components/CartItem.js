@@ -12,6 +12,7 @@ const CartItem = (props) => {
           id,
           item,
           price,
+          
         }))
       }
     
