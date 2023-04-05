@@ -1,12 +1,11 @@
 import React from 'react';
 import classes from './Notification.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { uiActions } from '../store/ui-slice';
 
 
 const Notification = (props) => {
     const dispatch = useDispatch();
-    const notification = useSelector((state) => state.ui.notification);
     let specialClasses = '';
 
   if (props.status === 'error') {
@@ -17,7 +16,6 @@ const Notification = (props) => {
   }
 
   const cssClasses = `${classes.notification} ${specialClasses}`;
-  const closeBtnClasses = `fa-solid  fa-sharp fa-square-xmark `
   return (
     <section className={cssClasses}>
       <h2>{props.title}</h2>
