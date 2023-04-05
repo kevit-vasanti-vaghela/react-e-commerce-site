@@ -13,6 +13,7 @@ import RouteProtection from "./pages/RouteProtection";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "./UI/Notification";
 import { sendCartData, fetchCartData} from "./store/cart-actions";
+import ErrorPage from "./pages/ErrorPage";
 
 const LoginPage = lazy(() => import('./pages/LoginPage'))
 const Products = lazy(() => import('./pages/Products'))
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
   {
     path:'/',
     element: <RootPage />,
-    
+    errorElement: <ErrorPage />,
     children: [
       {index: true, element: <HomePage />},
       {
