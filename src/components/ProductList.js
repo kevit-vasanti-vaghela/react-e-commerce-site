@@ -1,5 +1,5 @@
 import React, { useState,useCallback, useEffect } from 'react'
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, json } from 'react-router-dom'
 import ProductItem from './ProductItem'
 import classes from './ProductList.module.css'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -76,7 +76,7 @@ const ProductList = () => {
 export default ProductList
 
 export async function productsLoader() {
-    const url = new URL('https://641adba89b82ded29d438067.mockapi.io/productss');
+    const url = new URL('https://641adba89b82ded29d438067.mockapi.io/products');
     const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -85,9 +85,13 @@ export async function productsLoader() {
     })
 
     if(!response.ok){
-        throw new Response(JSON.stringify({ message : 'Could not fetch data !'}),  {
-            status : 500
-        })
+        // return { isError: true, message: 'Could not fetch products'};
+
+        // throw new Response(JSON.stringify({ message : 'Could not fetch data !'}),  {
+        //     status : 500
+        // })
+
+        throw json({ message : 'Could not fetch data !'},{ status: 500 })
     }
 
     const resData = await response.json();
