@@ -76,13 +76,19 @@ const ProductList = () => {
 export default ProductList
 
 export async function productsLoader() {
-    const url = new URL('https://641adba89b82ded29d438067.mockapi.io/products');
+    const url = new URL('https://641adba89b82ded29d438067.mockapi.io/productss');
     const response = await fetch(url, {
         method: 'GET',
         headers: {
             'content-type':'application/json'
         }
     })
+
+    if(!response.ok){
+        throw new Response(JSON.stringify({ message : 'Could not fetch data !'}),  {
+            status : 500
+        })
+    }
 
     const resData = await response.json();
     console.log('RES DATA',resData)
