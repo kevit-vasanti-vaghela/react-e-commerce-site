@@ -6,6 +6,9 @@ import { cartActions } from '../store/cart-slice'
 import Modal from '../UI/Modal'
 import modalClasses from '../UI/Modal.module.css'
 import Card from '../UI/Card'
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+import { getAuthToken } from '../util/auth'
 
 
 
@@ -36,6 +39,9 @@ const LoginForm = () => {
     setShowModal(false)
   }
    
+  const loginNotificationHandler = () => {
+    toast('Login Successful!')
+  }
     
   
   return (
@@ -60,9 +66,11 @@ const LoginForm = () => {
           <input ref={enteredPassword} id="password" type="password" name="password" required />
         </p>
         <div className={classes.actions}>
-          <button>Login</button>
+          <button onClick={loginNotificationHandler}>Login</button>
         </div>
       </form>
+      <ToastContainer />
+
     </div>
   )
 }
