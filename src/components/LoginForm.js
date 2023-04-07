@@ -7,8 +7,7 @@ import Modal from '../UI/Modal'
 import modalClasses from '../UI/Modal.module.css'
 import Card from '../UI/Card'
 import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
-import { getAuthToken } from '../util/auth'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -18,6 +17,7 @@ const LoginForm = () => {
   const enteredEmail = useRef();
   const enteredPassword = useRef();
   const loaderData = useLoaderData();
+  
   let navigate = useNavigate();
   const checkLogin = (e) =>{
     e.preventDefault();
@@ -29,7 +29,10 @@ const LoginForm = () => {
     if(authData) {
       localStorage.setItem('auth', true);
       localStorage.setItem('user',JSON.stringify(authData));
-      return navigate('/products')
+      toast('Login Successfull!');
+      setTimeout(()=> {
+        return navigate('/products')
+      },1000)
     } else {
       setShowModal(true)
     }
@@ -39,9 +42,7 @@ const LoginForm = () => {
     setShowModal(false)
   }
    
-  const loginNotificationHandler = () => {
-    toast('Login Successful!')
-  }
+  
     
   
   return (
@@ -66,7 +67,7 @@ const LoginForm = () => {
           <input ref={enteredPassword} id="password" type="password" name="password" required />
         </p>
         <div className={classes.actions}>
-          <button onClick={loginNotificationHandler}>Login</button>
+          <button>Login</button>
         </div>
       </form>
       <ToastContainer />
