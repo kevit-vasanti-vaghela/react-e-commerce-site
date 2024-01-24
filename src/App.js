@@ -12,93 +12,104 @@ import { checkAuthLoader } from "./util/auth";
 import RouteProtection from "./pages/RouteProtection";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "./UI/Notification";
-import { sendCartData, fetchCartData} from "./store/cart-actions";
+import { sendCartData, fetchCartData } from "./store/cart-actions";
+import ReactGA from "react-ga4";
 import ErrorPage from "./pages/ErrorPage";
 
-const LoginPage = lazy(() => import('./pages/LoginPage'))
-const Products = lazy(() => import('./pages/Products'))
-const SignUpPage = lazy(() => import('./pages/SignUpPage'))
-const ProfilePage = lazy(() => import('./pages/ProfilePage'))
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const Products = lazy(() => import("./pages/Products"));
+const SignUpPage = lazy(() => import("./pages/SignUpPage"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 
 const router = createBrowserRouter([
   {
-    path:'/',
+    path: "/",
     element: <RootPage />,
     errorElement: <ErrorPage />,
     children: [
-      {index: true, element: <HomePage />},
+      { index: true, element: <HomePage /> },
       {
-        path: 'login', 
+        path: "login",
         element: (
           <Suspense fallback={<p>Loading...</p>}>
             <LoginPage />
           </Suspense>
-        ), 
-        loader: () => import('./components/LoginForm').then(module => module.loginLoader())
+        ),
+        loader: () =>
+          import("./components/LoginForm").then((module) =>
+            module.loginLoader()
+          ),
       },
       {
-        path: 'signup', 
-        element: 
+        path: "signup",
+        element: (
           <Suspense fallback={<p>Loading...</p>}>
             <SignUpPage />
           </Suspense>
-        , 
-        action: signUpAction
+        ),
+        action: signUpAction,
       },
       {
-        index: '/',
+        index: "/",
         element: <RouteProtection />,
         loader: checkAuthLoader,
-        children:[
+        children: [
           {
-            path: 'checkout', 
+            path: "checkout",
             element: <CheckoutPage />,
-            
           },
           {
-            path: 'user-profile',
-            id:'single-user',
-            element: 
+            path: "user-profile",
+            id: "single-user",
+            element: (
               <Suspense fallback={<p>loading...</p>}>
                 <ProfilePage />
-              </Suspense>, 
-            loader: () => import('./components/SignUpForm').then(module => module.singleUserLoader()) , 
+              </Suspense>
+            ),
+            loader: () =>
+              import("./components/SignUpForm").then((module) =>
+                module.singleUserLoader()
+              ),
             action: changeUserDataAction,
             // loader: checkAuthLoader
           },
           {
-            path:'products', 
+            path: "products",
             children: [
-                  {
-                    index: true, 
-                    element: <Suspense fallback={<p>loading...</p>}>
-                                <Products />
-                              </Suspense>,  
-                    loader: () => import('./components/ProductList').then(module => module.productsLoader()) ,
-                    
-                  },
-                  {
-                    path: ':id', 
-                    element: <ProductDetail />, 
-                    loader: loadEachProduct,
-                    // loader: checkAuthLoader,
-                  },
-            ]
+              {
+                index: true,
+                element: (
+                  <Suspense fallback={<p>loading...</p>}>
+                    <Products />
+                  </Suspense>
+                ),
+                loader: () =>
+                  import("./components/ProductList").then((module) =>
+                    module.productsLoader()
+                  ),
+              },
+              {
+                path: ":id",
+                element: <ProductDetail />,
+                loader: loadEachProduct,
+                // loader: checkAuthLoader,
+              },
+            ],
           },
           {
-            path: 'cart', 
+            path: "cart",
             element: <CartPage />,
-            loader: () => import('./components/SignUpForm').then(module => module.singleUserLoader()) , 
+            loader: () =>
+              import("./components/SignUpForm").then((module) =>
+                module.singleUserLoader()
+              ),
             action: changeUserDataAction,
             // loader: checkAuthLoader
-    
           },
-        ]
+        ],
       },
-      
-    ]
+    ],
   },
- 
 ]);
 
 let isInitial = true;
@@ -108,9 +119,17 @@ function App() {
   const cart = useSelector((state) => state.cart);
   const notification = useSelector((state) => state.ui.notification);
 
+  const TRACKING_ID = "G-Z3G658MLHM";
+  ReactGA.initialize(TRACKING_ID);
+
   useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: "/login",
+      title: "Custom Title",
+    });
     dispatch(fetchCartData());
-  },[dispatch])
+  }, [dispatch]);
 
   useEffect(() => {
     if (isInitial) {
@@ -120,19 +139,17 @@ function App() {
     if (cart.changed) {
       dispatch(sendCartData(cart));
     }
-  },[cart, dispatch])
+  }, [cart, dispatch]);
 
   return (
     <div>
-      {
-        notification && 
-        <Notification 
+      {notification && (
+        <Notification
           title={notification.title}
           status={notification.status}
           message={notification.message}
-
         />
-      }
+      )}
       <RouterProvider router={router} />
     </div>
   );
