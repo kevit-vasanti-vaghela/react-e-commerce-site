@@ -125,7 +125,7 @@ function App() {
   useEffect(() => {
     ReactGA.send({
       hitType: "pageview",
-      page: "/login",
+      page: window.location.pathname,
       title: "Custom Title",
     });
     dispatch(fetchCartData());
